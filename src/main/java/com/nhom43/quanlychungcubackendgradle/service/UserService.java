@@ -5,9 +5,11 @@ import com.nhom43.quanlychungcubackendgradle.entity.User;
 import com.nhom43.quanlychungcubackendgradle.mapper.UserMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -48,7 +50,7 @@ public class UserService {
     public UserDto update(UserDto userDto, Long id) {
         UserDto data = findById(id);
         User entity = userMapper.toEntity(userDto);
-        BeanUtil.copyProperties(data, entity);
+        BeanUtils.copyProperties(data, entity);
         return save(userMapper.toDto(entity));
     }
 }

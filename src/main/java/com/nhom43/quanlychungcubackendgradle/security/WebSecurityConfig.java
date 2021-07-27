@@ -1,8 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.security;
 
-import com.example.exbackendgradle.security.jwt.AuthEntryPointJwt;
-import com.example.exbackendgradle.security.jwt.AuthTokenFilter;
-import com.example.exbackendgradle.security.services.UserDetailsServiceImpl;
+import com.nhom43.quanlychungcubackendgradle.security.jwt.AuthEntryPointJwt;
+import com.nhom43.quanlychungcubackendgradle.security.jwt.AuthTokenFilter;
+import com.nhom43.quanlychungcubackendgradle.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,7 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] AUTH_ADMIN_LIST = {
-        
+            "/can-ho",
+//            "/auth/signup",
     };
     private static final String[] AUTH_USER_LIST = {
 
@@ -62,6 +63,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
 
+    };
+
+    private static final String[] NO_AUTH_LIST = {
+            "/auth/signup",
+            "auth/signin",
+            "/**"
     };
 
     @Override
@@ -75,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Yêu cầu xác thực quyền USER hoặc ADMIN
                 .antMatchers(AUTH_LIST).hasAnyRole("USER", "ADMIN")
                 // Không xác thực yêu cầu cụ thể này
-                .antMatchers().permitAll().anyRequest().authenticated()
+                .antMatchers(NO_AUTH_LIST).permitAll().anyRequest().authenticated()
                 // Nếu có bất kỳ ngoại lệ nào xảy ra, sẽ gọi
                 .and().exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler).and()

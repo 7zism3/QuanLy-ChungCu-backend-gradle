@@ -1,8 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.security.services;
 
 
-import com.example.exbackendgradle.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nhom43.quanlychungcubackendgradle.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
+
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -100,4 +101,5 @@ public class UserDetailsImpl implements UserDetails {
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
     }
+
 }

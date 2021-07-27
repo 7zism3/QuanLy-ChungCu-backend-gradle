@@ -1,14 +1,13 @@
 package com.nhom43.quanlychungcubackendgradle.security.services;
 
-
-import com.example.exbackendgradle.entity.User;
-import com.example.exbackendgradle.reponsitory.UserRepository;
+import com.nhom43.quanlychungcubackendgradle.entity.User;
+import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

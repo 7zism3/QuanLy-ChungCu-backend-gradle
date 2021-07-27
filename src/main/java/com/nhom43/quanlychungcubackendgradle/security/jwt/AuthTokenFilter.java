@@ -1,7 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.security.jwt;
 
 
-import com.example.exbackendgradle.security.services.UserDetailsServiceImpl;
+import com.nhom43.quanlychungcubackendgradle.security.services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

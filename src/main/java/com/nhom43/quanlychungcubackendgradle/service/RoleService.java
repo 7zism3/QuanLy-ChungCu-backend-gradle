@@ -5,9 +5,11 @@ import com.nhom43.quanlychungcubackendgradle.entity.Role;
 import com.nhom43.quanlychungcubackendgradle.mapper.RoleMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.RoleRepository;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -48,7 +50,7 @@ public class RoleService {
     public RoleDto update(RoleDto roleDto, Integer id) {
         RoleDto data = findById(id);
         Role entity = roleMapper.toEntity(roleDto);
-        BeanUtil.copyProperties(data, entity);
+        BeanUtils.copyProperties(data, entity);
         return save(roleMapper.toDto(entity));
     }
 }

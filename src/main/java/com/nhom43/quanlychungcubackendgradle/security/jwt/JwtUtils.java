@@ -1,6 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.security.jwt;
 
-import com.example.exbackendgradle.security.services.UserDetailsImpl;
+import com.nhom43.quanlychungcubackendgradle.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +14,10 @@ import java.util.Date;
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${bezkoder.app.jwtSecret}")
+    @Value("${nhom43.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${bezkoder.app.jwtExpirationMs}")
+    @Value("${nhom43.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {

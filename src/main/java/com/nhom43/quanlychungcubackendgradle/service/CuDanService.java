@@ -19,6 +19,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CuDanService {
+
     private final CuDanRepository repository;
     private final CuDanMapper cuDanMapper;
 

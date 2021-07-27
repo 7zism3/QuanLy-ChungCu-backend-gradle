@@ -1,0 +1,58 @@
+package com.nhom43.quanlychungcubackendgradle.controller;
+
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
+import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
+import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
+import com.nhom43.quanlychungcubackendgradle.service.HoaDonDichVuService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@RequestMapping("/hoa-don-dich-vu")
+@RestController
+public class HoaDonDichVuController {
+    private final HoaDonDichVuService hoaDonDichVuService;
+
+    public HoaDonDichVuController(HoaDonDichVuService hoaDonDichVuService) {
+        this.hoaDonDichVuService = hoaDonDichVuService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> save(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto) {
+        hoaDonDichVuService.save(hoaDonDichVuDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<HoaDonDichVuDto> findById(@PathVariable("id") Long id) {
+        HoaDonDichVuDto hoaDonDichVu = hoaDonDichVuService.findById(id);
+        return ResponseEntity.ok(hoaDonDichVu);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        hoaDonDichVuService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/page-query")
+    public ResponseEntity<Page<HoaDonDichVuDto>> pageQuery(HoaDonDichVuDto hoaDonDichVuDto, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<HoaDonDichVuDto> hoaDonDichVuPage = hoaDonDichVuService.findByCondition(hoaDonDichVuDto, pageable);
+        return ResponseEntity.ok(hoaDonDichVuPage);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto, @PathVariable("id") Long id) {
+        hoaDonDichVuService.update(hoaDonDichVuDto, id);
+        return ResponseEntity.ok().build();
+    }
+}

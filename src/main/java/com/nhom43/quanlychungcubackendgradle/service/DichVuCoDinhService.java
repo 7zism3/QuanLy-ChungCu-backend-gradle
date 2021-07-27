@@ -1,0 +1,56 @@
+package com.nhom43.quanlychungcubackendgradle.service;
+
+import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
+import com.nhom43.quanlychungcubackendgradle.entity.DichVuCoDinh;
+import com.nhom43.quanlychungcubackendgradle.mapper.DichVuCoDinhMapper;
+import com.nhom43.quanlychungcubackendgradle.repository.DichVuCoDinhRepository;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional
+public class DichVuCoDinhService {
+    private final DichVuCoDinhRepository repository;
+    private final DichVuCoDinhMapper dichVuCoDinhMapper;
+
+    public DichVuCoDinhService(DichVuCoDinhRepository repository, DichVuCoDinhMapper dichVuCoDinhMapper) {
+        this.repository = repository;
+        this.dichVuCoDinhMapper = dichVuCoDinhMapper;
+    }
+
+    public DichVuCoDinhDto save(DichVuCoDinhDto dichVuCoDinhDto) {
+        DichVuCoDinh entity = dichVuCoDinhMapper.toEntity(dichVuCoDinhDto);
+        return dichVuCoDinhMapper.toDto(repository.save(entity));
+    }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
+    public DichVuCoDinhDto findById(Long id) {
+        return dichVuCoDinhMapper.toDto(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Không tồn tại id: " + id)));
+    }
+
+    public Page<DichVuCoDinhDto> findByCondition(DichVuCoDinhDto dichVuCoDinhDto, Pageable pageable) {
+        DichVuCoDinh dichVuCoDinh = dichVuCoDinhMapper.toEntity(dichVuCoDinhDto);
+        Page<DichVuCoDinh> entityPage = repository.findAll(pageable);
+        List<DichVuCoDinh> entities = entityPage.getContent();
+        return new PageImpl<>(dichVuCoDinhMapper.toDto(entities), pageable, entityPage.getTotalElements());
+    }
+
+    public DichVuCoDinhDto update(DichVuCoDinhDto dichVuCoDinhDto, Long id) {
+        DichVuCoDinhDto data = findById(id);
+        DichVuCoDinh entity = dichVuCoDinhMapper.toEntity(dichVuCoDinhDto);
+        BeanUtils.copyProperties(data, entity);
+        return save(dichVuCoDinhMapper.toDto(entity));
+    }
+}

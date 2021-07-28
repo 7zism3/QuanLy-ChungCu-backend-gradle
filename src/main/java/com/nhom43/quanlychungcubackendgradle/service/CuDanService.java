@@ -1,8 +1,12 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
+import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
+import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.mapper.CuDanMapper;
+import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.CuDanRepository;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
@@ -10,7 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -23,7 +29,9 @@ public class CuDanService {
     private final CuDanRepository repository;
     private final CuDanMapper cuDanMapper;
 
-    public CuDanService(CuDanRepository repository, CuDanMapper cuDanMapper) {
+
+    public CuDanService(CuDanRepository repository, CuDanMapper cuDanMapper
+            , CanHoMapper canHoMapper) {
         this.repository = repository;
         this.cuDanMapper = cuDanMapper;
     }
@@ -50,8 +58,24 @@ public class CuDanService {
 
     public CuDanDto update(CuDanDto cuDanDto, Long id) {
         CuDanDto data = findById(id);
-        CuDan entity = cuDanMapper.toEntity(cuDanDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(cuDanMapper.toDto(entity));
+        BeanUtils.copyProperties(cuDanDto, data);
+        return save(data);
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    public List<CuDanDto> findAll() {
+        List<CuDan> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại cư dân nào");
+        return cuDanMapper.toDto(list);
+    }
+
+    public List<CuDanDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<CuDan> list = repository.findAllByCanHo_Id(id_canHo);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có cư dân trong căn hộ này");
+        return cuDanMapper.toDto(list);
     }
 }

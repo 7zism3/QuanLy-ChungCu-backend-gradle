@@ -49,8 +49,7 @@ public class ChiTietHoaDonSuaChuaService {
 
     public ChiTietHoaDonSuaChuaDto update(ChiTietHoaDonSuaChuaDto chiTietHoaDonSuaChuaDto, Long id) {
         ChiTietHoaDonSuaChuaDto data = findById(id);
-        ChiTietHoaDonSuaChua entity = chiTietHoaDonSuaChuaMapper.toEntity(chiTietHoaDonSuaChuaDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(chiTietHoaDonSuaChuaMapper.toDto(entity));
+        BeanUtils.copyProperties(chiTietHoaDonSuaChuaDto, data);
+        return save(data);
     }
 }

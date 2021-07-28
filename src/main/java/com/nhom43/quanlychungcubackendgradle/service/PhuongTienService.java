@@ -10,15 +10,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
 public class PhuongTienService {
+
     private final PhuongTienRepository repository;
     private final PhuongTienMapper phuongTienMapper;
 
@@ -50,8 +52,24 @@ public class PhuongTienService {
 
     public PhuongTienDto update(PhuongTienDto phuongTienDto, Long id) {
         PhuongTienDto data = findById(id);
-        PhuongTien entity = phuongTienMapper.toEntity(phuongTienDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(phuongTienMapper.toDto(entity));
+        BeanUtils.copyProperties(phuongTienDto, data);
+        return save(data);
+    }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    public List<PhuongTienDto> findAll() {
+        List<PhuongTien> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại phương tiện nào");
+        return phuongTienMapper.toDto(list);
+    }
+
+    public List<PhuongTienDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<PhuongTien> list = repository.findAllByCanHo_Id(id_canHo);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có phương tiện nào trong căn hộ này");
+        return phuongTienMapper.toDto(list);
     }
 }

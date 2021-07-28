@@ -40,7 +40,7 @@ public class CanHoService {
 
     public CanHoDto findById(Long id) {
         return canHoMapper.toDto(repository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tồn tại id: " + id)));
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tồn tại căn hộ id: " + id)));
     }
 
     public Page<CanHoDto> findByCondition(CanHoDto canHoDto, Pageable pageable) {
@@ -50,12 +50,21 @@ public class CanHoService {
         return new PageImpl<>(canHoMapper.toDto(entities), pageable, entityPage.getTotalElements());
     }
 
+//    public CanHoDto update(CanHoDto canHoDto, Long id) {
+//        CanHoDto data = findById(id);
+//        CanHo entity = canHoMapper.toEntity(canHoDto);
+//        BeanUtils.copyProperties(data, entity);
+//        return save(canHoMapper.toDto(entity));
+//    }
+
     public CanHoDto update(CanHoDto canHoDto, Long id) {
         CanHoDto data = findById(id);
-        CanHo entity = canHoMapper.toEntity(canHoDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(canHoMapper.toDto(entity));
+        BeanUtils.copyProperties(canHoDto, data);
+        return save(data);
     }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
 
     public List<CanHoDto> findAll() {
         List<CanHo> canHoList = repository.findAll();

@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
+
 public class CanHo {
 
     @Id

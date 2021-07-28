@@ -49,8 +49,7 @@ public class NhanVienService {
 
     public NhanVienDto update(NhanVienDto nhanVienDto, Long id) {
         NhanVienDto data = findById(id);
-        NhanVien entity = nhanVienMapper.toEntity(nhanVienDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(nhanVienMapper.toDto(entity));
+        BeanUtils.copyProperties(nhanVienDto, data);
+        return save(data);
     }
 }

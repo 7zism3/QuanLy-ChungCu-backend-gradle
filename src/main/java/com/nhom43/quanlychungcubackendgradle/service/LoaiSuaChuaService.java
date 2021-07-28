@@ -49,8 +49,7 @@ public class LoaiSuaChuaService {
 
     public LoaiSuaChuaDto update(LoaiSuaChuaDto loaiSuaChuaDto, Long id) {
         LoaiSuaChuaDto data = findById(id);
-        LoaiSuaChua entity = loaiSuaChuaMapper.toEntity(loaiSuaChuaDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(loaiSuaChuaMapper.toDto(entity));
+        BeanUtils.copyProperties(loaiSuaChuaDto, data);
+        return save(data);
     }
 }

@@ -49,8 +49,7 @@ public class ThongBaoService {
 
     public ThongBaoDto update(ThongBaoDto thongBaoDto, Long id) {
         ThongBaoDto data = findById(id);
-        ThongBao entity = thongBaoMapper.toEntity(thongBaoDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(thongBaoMapper.toDto(entity));
+        BeanUtils.copyProperties(thongBaoDto, data);
+        return save(data);
     }
 }

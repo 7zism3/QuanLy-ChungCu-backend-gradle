@@ -49,8 +49,7 @@ public class RoleService {
 
     public RoleDto update(RoleDto roleDto, Integer id) {
         RoleDto data = findById(id);
-        Role entity = roleMapper.toEntity(roleDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(roleMapper.toDto(entity));
+        BeanUtils.copyProperties(roleDto, data);
+        return save(data);
     }
 }

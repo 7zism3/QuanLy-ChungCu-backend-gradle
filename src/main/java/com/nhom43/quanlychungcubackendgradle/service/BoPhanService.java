@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
 import com.nhom43.quanlychungcubackendgradle.mapper.BoPhanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.BoPhanRepository;
@@ -51,8 +52,7 @@ public class BoPhanService {
 
     public BoPhanDto update(BoPhanDto boPhanDto, Long id) {
         BoPhanDto data = findById(id);
-        BoPhan entity = boPhanMapper.toEntity(boPhanDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(boPhanMapper.toDto(entity));
+        BeanUtils.copyProperties(boPhanDto, data);
+        return save(data);
     }
 }

@@ -19,9 +19,9 @@ public class PhuongTien {
 
     private String bienKiemSoat;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cu_dan", nullable = false)
-    private CuDan cuDan;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_can_ho", nullable = false)
+    private CanHo canHo;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_the_cu_dan", nullable = false)

@@ -49,8 +49,7 @@ public class DichVuCoDinhService {
 
     public DichVuCoDinhDto update(DichVuCoDinhDto dichVuCoDinhDto, Long id) {
         DichVuCoDinhDto data = findById(id);
-        DichVuCoDinh entity = dichVuCoDinhMapper.toEntity(dichVuCoDinhDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(dichVuCoDinhMapper.toDto(entity));
+        BeanUtils.copyProperties(dichVuCoDinhDto, data);
+        return save(data);
     }
 }

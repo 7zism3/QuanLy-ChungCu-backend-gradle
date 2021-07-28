@@ -49,8 +49,7 @@ public class HoaDonSuaChuaService {
 
     public HoaDonSuaChuaDto update(HoaDonSuaChuaDto hoaDonSuaChuaDto, Long id) {
         HoaDonSuaChuaDto data = findById(id);
-        HoaDonSuaChua entity = hoaDonSuaChuaMapper.toEntity(hoaDonSuaChuaDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(hoaDonSuaChuaMapper.toDto(entity));
+        BeanUtils.copyProperties(hoaDonSuaChuaDto, data);
+        return save(data);
     }
 }

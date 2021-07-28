@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonDichVuMapper;
@@ -49,8 +50,7 @@ public class ChiTietHoaDonDichVuService {
 
     public ChiTietHoaDonDichVuDto update(ChiTietHoaDonDichVuDto chiTietHoaDonDichVuDto, Long id) {
         ChiTietHoaDonDichVuDto data = findById(id);
-        ChiTietHoaDonDichVu entity = chiTietHoaDonDichVuMapper.toEntity(chiTietHoaDonDichVuDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(chiTietHoaDonDichVuMapper.toDto(entity));
+        BeanUtils.copyProperties(chiTietHoaDonDichVuDto, data);
+        return save(data);
     }
 }

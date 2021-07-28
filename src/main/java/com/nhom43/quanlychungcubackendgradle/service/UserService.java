@@ -49,8 +49,7 @@ public class UserService {
 
     public UserDto update(UserDto userDto, Long id) {
         UserDto data = findById(id);
-        User entity = userMapper.toEntity(userDto);
-        BeanUtils.copyProperties(data, entity);
-        return save(userMapper.toDto(entity));
+        BeanUtils.copyProperties(userDto, data);
+        return save(data);
     }
 }

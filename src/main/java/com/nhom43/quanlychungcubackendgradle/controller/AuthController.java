@@ -102,10 +102,10 @@ public class AuthController {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                    case "staff":
+                        Role staffRole = roleRepository.findByName(ERole.ROLE_STAFF)
                                 .orElseThrow(() -> new RuntimeException("Lỗi: Không tìm thấy vai trò."));
-                        roles.add(modRole);
+                        roles.add(staffRole);
 
                         break;
                     default:

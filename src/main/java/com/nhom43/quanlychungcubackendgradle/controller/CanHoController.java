@@ -1,9 +1,15 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
+import com.nhom43.quanlychungcubackendgradle.dto.TheCuDanDto;
 import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.service.CanHoService;
+import com.nhom43.quanlychungcubackendgradle.service.CuDanService;
+import com.nhom43.quanlychungcubackendgradle.service.PhuongTienService;
+import com.nhom43.quanlychungcubackendgradle.service.TheCuDanService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +27,19 @@ import java.util.stream.Collectors;
 @RestController
 public class CanHoController {
     private final CanHoService canHoService;
+    private final PhuongTienService phuongTienService;
+    private final TheCuDanService theCuDanService;
+    private final CuDanService cuDanService;
 
-    public CanHoController(CanHoService canHoService) {
+    public CanHoController(CanHoService canHoService
+            , PhuongTienService phuongTienService
+            , TheCuDanService theCuDanService
+            , CuDanService cuDanService
+    ) {
         this.canHoService = canHoService;
+        this.phuongTienService = phuongTienService;
+        this.theCuDanService = theCuDanService;
+        this.cuDanService = cuDanService;
     }
 
     @PostMapping
@@ -68,13 +84,36 @@ public class CanHoController {
     @GetMapping("/hoat-dong")
     public ResponseEntity<List<CanHoDto>> findAllByTrangThaiHoatDong() {
         List<CanHoDto> canHoList = canHoService.findAllByTrangThai(true);
-        return  ResponseEntity.ok(canHoList);
+        return ResponseEntity.ok(canHoList);
     }
 
     @GetMapping("/khong-hoat-dong")
     public ResponseEntity<List<CanHoDto>> findAllByTrangThaiKhongHoatDong() {
         List<CanHoDto> canHoList = canHoService.findAllByTrangThai(false);
-        return  ResponseEntity.ok(canHoList);
+        return ResponseEntity.ok(canHoList);
     }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    @GetMapping("/{id}/cu-dan")
+    public ResponseEntity<?> findAllCuDanByCanHo_Id(@PathVariable("id") Long id) {
+        List<CuDanDto> cuDanList = cuDanService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(cuDanList);
+    }
+
+    @GetMapping("/{id}/phuong-tien")
+    public ResponseEntity<?> findAllPhuongTienByCanHo_Id(@PathVariable("id") Long id) {
+        List<PhuongTienDto> cuDanList = phuongTienService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(cuDanList);
+    }
+
+    @GetMapping("/{id}/the-cu-dan")
+    public ResponseEntity<?> findAllTheCuDanByCanHo_Id(@PathVariable("id") Long id) {
+        List<TheCuDanDto> cuDanList = theCuDanService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(cuDanList);
+    }
+
+
 
 }

@@ -1,5 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.time.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class CuDan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +38,6 @@ public class CuDan {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_can_ho", nullable = false)
+    @JsonIgnore
     private CanHo canHo;
 }

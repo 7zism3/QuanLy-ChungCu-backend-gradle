@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_ADMIN_LIST = {
             "/can-ho",
+            "/cu-dan"
 //            "/auth/signup",
     };
     private static final String[] AUTH_USER_LIST = {

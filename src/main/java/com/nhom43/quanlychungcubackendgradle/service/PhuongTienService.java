@@ -72,4 +72,21 @@ public class PhuongTienService {
         if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có phương tiện nào trong căn hộ này");
         return phuongTienMapper.toDto(list);
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    public List<PhuongTienDto> findAll() {
+        List<PhuongTien> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại phương tiện nào");
+        return phuongTienMapper.toDto(list);
+    }
+
+    public List<PhuongTienDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<PhuongTien> list = repository.findAllByCuDan_CanHo_Id(id_canHo);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có phương tiện nào trong căn hộ này");
+        return phuongTienMapper.toDto(list);
+    }
 }

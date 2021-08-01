@@ -73,4 +73,21 @@ public class TheCuDanService {
         if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có thẻ cư dân nào cho căn hộ này");
         return theCuDanMapper.toDto(list);
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    public List<TheCuDanDto> findAll() {
+        List<TheCuDan> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thẻ cư dân nào");
+        return theCuDanMapper.toDto(list);
+    }
+
+    public List<TheCuDanDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<TheCuDan> list = repository.findAllByCanHo_Id(id_canHo);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có thẻ cư dân nào cho căn hộ này");
+        return theCuDanMapper.toDto(list);
+    }
 }

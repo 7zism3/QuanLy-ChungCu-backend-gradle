@@ -82,17 +82,5 @@ public class CuDanService {
     // ------------------------------------------------------------------------------------------------------------- //
 
 
-    public List<CuDanDto> findAll() {
-        List<CuDan> list = repository.findAll();
-        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại cư dân nào");
-        return cuDanMapper.toDto(list);
-    }
 
-    public List<CuDanDto> findAllByCanHo_Id(Long id_canHo) {
-
-        List<CuDan> list = repository.findAllByCanHo_Id(id_canHo);
-
-        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có cư dân trong căn hộ này");
-        return cuDanMapper.toDto(list);
-    }
 }

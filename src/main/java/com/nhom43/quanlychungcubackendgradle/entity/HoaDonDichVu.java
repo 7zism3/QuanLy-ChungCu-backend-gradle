@@ -3,6 +3,7 @@ package com.nhom43.quanlychungcubackendgradle.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
@@ -14,14 +15,11 @@ public class HoaDonDichVu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer thang;
-
-    private Integer nam;
+    private Instant ngayTao;
 
     private Boolean trangThai;
 
     private String bienKiemSoat;
-
 
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_can_ho", nullable = false)

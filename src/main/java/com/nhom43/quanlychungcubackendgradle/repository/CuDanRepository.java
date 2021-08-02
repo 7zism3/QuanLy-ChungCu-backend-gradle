@@ -13,5 +13,7 @@ import java.util.Optional;
 public interface CuDanRepository extends JpaRepository<CuDan, Long>, JpaSpecificationExecutor<CuDan> {
 
     List<CuDan> findAllByCanHo_Id(Long id);
+    CuDan findByCanHoAndChuCanHo (CanHo canHo, boolean chuCanHo);
+    Long countByCanHoAndDaXoa (CanHo canHo, boolean trangThai);
 
 }

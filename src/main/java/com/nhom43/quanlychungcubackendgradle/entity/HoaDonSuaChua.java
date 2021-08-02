@@ -16,7 +16,7 @@ public class HoaDonSuaChua {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Instant ngay;
+    private Instant ngayTao;
 
     private Boolean trangThai;
 

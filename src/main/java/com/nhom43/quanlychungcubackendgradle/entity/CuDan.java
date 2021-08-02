@@ -12,7 +12,6 @@ import java.time.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
 public class CuDan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

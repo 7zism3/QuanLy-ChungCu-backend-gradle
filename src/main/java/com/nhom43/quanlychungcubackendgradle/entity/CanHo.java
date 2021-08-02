@@ -9,29 +9,24 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
-
 public class CanHo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(nullable = false)
     private String tenCanHo;
-
 
     @Column(nullable = false)
     private String moTa;
 
-
     @Column(nullable = false)
     private Integer dienTich;
-
 
     @Column(nullable = false)
     private Boolean trangThai;
 
+    private Long idTaiKhoan;
 }
 

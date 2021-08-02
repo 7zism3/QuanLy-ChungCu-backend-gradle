@@ -22,7 +22,6 @@ public class NhanVien {
 
     private String bienKiemSoat;
 
-
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_bo_phan", nullable = false)
     private BoPhan boPhan;

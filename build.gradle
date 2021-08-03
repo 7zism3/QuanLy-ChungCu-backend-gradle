@@ -22,7 +22,6 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -35,6 +34,7 @@ repositories {
 
 dependencies {
 
+    implementation 'com.github.jsimone:webapp-runner:9.0.27.1'
     implementation 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.3'
 
@@ -48,7 +48,7 @@ dependencies {
     implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.0.Beta1'
     implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.0.Beta1'
 
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     implementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.8.0-M1'
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'

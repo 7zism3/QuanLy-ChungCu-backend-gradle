@@ -4,9 +4,12 @@ plugins {
     id 'java'
 }
 
+
 group = 'com.nhom43'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+
 
 configurations {
     compileOnly {
@@ -20,6 +23,7 @@ repositories {
 
 dependencies {
 
+    implementation 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.3'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.5.3'

@@ -10,6 +10,7 @@ public class PhuongTienDto extends AbstractDto<Long> {
     private String loaiXe;
     private String tenXe;
     private String bienKiemSoat;
+    private boolean daXoa;
     private CanHo canHo;
     private TheCuDan theCuDan;
 

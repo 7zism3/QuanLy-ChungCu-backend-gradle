@@ -19,8 +19,6 @@ public class HoaDonDichVu {
 
     private Boolean trangThai;
 
-    private String bienKiemSoat;
-
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_can_ho", nullable = false)
     private CanHo canHo;

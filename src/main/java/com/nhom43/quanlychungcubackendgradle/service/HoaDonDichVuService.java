@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
+import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonDichVuRepository;
@@ -10,7 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -52,4 +56,27 @@ public class HoaDonDichVuService {
         BeanUtils.copyProperties(hoaDonDichVuDto, data);
         return save(data);
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    public List<HoaDonDichVuDto> findAll() {
+        List<HoaDonDichVu> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        return hoaDonDichVuMapper.toDto(list);
+    }
+
+    public List<HoaDonDichVuDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<HoaDonDichVu> list = repository.findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(id_canHo);
+
+        if (list.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có hóa đơn nào với căn hộ này");
+        return hoaDonDichVuMapper.toDto(list);
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
 }

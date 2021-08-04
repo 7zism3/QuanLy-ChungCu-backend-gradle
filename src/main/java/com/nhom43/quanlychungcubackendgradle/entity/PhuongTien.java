@@ -17,6 +17,8 @@ public class PhuongTien {
 
     private String tenXe;
 
+    private boolean daXoa;
+
     private String bienKiemSoat;
 
     @ManyToOne(fetch = FetchType.LAZY)

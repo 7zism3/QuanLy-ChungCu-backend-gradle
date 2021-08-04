@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DichVuCoDinhRepository extends JpaRepository<DichVuCoDinh, Long>, JpaSpecificationExecutor<DichVuCoDinh> {
+    DichVuCoDinh findFirstByTen (String ten);
 }

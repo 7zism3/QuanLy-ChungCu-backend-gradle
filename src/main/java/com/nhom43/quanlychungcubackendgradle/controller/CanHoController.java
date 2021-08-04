@@ -1,15 +1,10 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
-import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
-import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
-import com.nhom43.quanlychungcubackendgradle.dto.TheCuDanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.*;
 import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
+import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
-import com.nhom43.quanlychungcubackendgradle.service.CanHoService;
-import com.nhom43.quanlychungcubackendgradle.service.CuDanService;
-import com.nhom43.quanlychungcubackendgradle.service.PhuongTienService;
-import com.nhom43.quanlychungcubackendgradle.service.TheCuDanService;
+import com.nhom43.quanlychungcubackendgradle.service.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -30,16 +25,19 @@ public class CanHoController {
     private final PhuongTienService phuongTienService;
     private final TheCuDanService theCuDanService;
     private final CuDanService cuDanService;
+    private final HoaDonDichVuService hoaDonDichVuService;
 
     public CanHoController(CanHoService canHoService
             , PhuongTienService phuongTienService
             , TheCuDanService theCuDanService
             , CuDanService cuDanService
+            , HoaDonDichVuService hoaDonDichVuService
     ) {
         this.canHoService = canHoService;
         this.phuongTienService = phuongTienService;
         this.theCuDanService = theCuDanService;
         this.cuDanService = cuDanService;
+        this.hoaDonDichVuService = hoaDonDichVuService;
     }
 
     @PostMapping
@@ -114,6 +112,10 @@ public class CanHoController {
         return ResponseEntity.ok(cuDanList);
     }
 
-
+    @GetMapping("/{id}/hoa-don")
+    public ResponseEntity<?> findAllHoaDonDichVuByCanHo_Id(@PathVariable("id") Long id) {
+        List<HoaDonDichVuDto> cuDanList = hoaDonDichVuService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(cuDanList);
+    }
 
 }

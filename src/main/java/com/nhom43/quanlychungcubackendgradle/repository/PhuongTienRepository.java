@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.repository;
 
+import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,6 @@ import java.util.List;
 public interface PhuongTienRepository extends JpaRepository<PhuongTien, Long>, JpaSpecificationExecutor<PhuongTien> {
 
     List<PhuongTien> findAllByCanHo_Id(Long id);
+    int countPhuongTienByCanHoAndLoaiXeAndDaXoa (CanHo canHo, String loaiXe, boolean daXoa);
 
 }

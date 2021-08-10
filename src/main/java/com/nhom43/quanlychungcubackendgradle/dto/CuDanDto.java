@@ -20,6 +20,7 @@ public class CuDanDto extends AbstractDto<Long> {
     private String soDienThoai;
     private String email;
     private Boolean chuCanHo;
+    private Boolean daXoa;
     private CanHo canHo;
 
 }

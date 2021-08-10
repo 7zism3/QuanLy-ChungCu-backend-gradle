@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
 import com.nhom43.quanlychungcubackendgradle.mapper.BoPhanMapper;
 import com.nhom43.quanlychungcubackendgradle.service.BoPhanService;
@@ -55,4 +56,5 @@ public class BoPhanController {
         boPhanService.update(boPhanDto, id);
         return ResponseEntity.ok().build();
     }
+
 }

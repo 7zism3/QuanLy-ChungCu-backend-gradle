@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
 import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
@@ -54,5 +55,25 @@ public class PhuongTienController {
     public ResponseEntity<Void> update(@RequestBody @Validated PhuongTienDto phuongTienDto, @PathVariable("id") Long id) {
         phuongTienService.update(phuongTienDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    @GetMapping("")
+    public ResponseEntity<List<PhuongTienDto>> findAll() {
+        List<PhuongTienDto> list = phuongTienService.findAll();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/da-xoa")
+    public ResponseEntity<List<PhuongTienDto>> findAllByDaXoa() {
+        List<PhuongTienDto> list = phuongTienService.findAllByDaXoa(true);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/chua-xoa")
+    public ResponseEntity<List<PhuongTienDto>> findAllByChuaXoa() {
+        List<PhuongTienDto> list = phuongTienService.findAllByDaXoa(false);
+        return ResponseEntity.ok(list);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,14 +74,20 @@ public class CuDanService {
 
     public List<CuDanDto> findAllByCanHo_Id(Long id_canHo) {
 
-        List<CuDan> list = repository.findAllByCanHo_Id(id_canHo);
+        List<CuDan> list = repository.findByCanHo_Id(id_canHo);
 
-        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có cư dân trong căn hộ này");
+        if (list.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có cư dân trong căn hộ này");
         return cuDanMapper.toDto(list);
     }
 
     // ------------------------------------------------------------------------------------------------------------- //
 
+    public List<CuDanDto> findAllByDaXoa(boolean daXoa) {
+        List<CuDan> cuDanList = repository.findAllByDaXoa(daXoa);
+        if (cuDanList.isEmpty()) throw new ResourceNotFoundException("Không có cư dân nào Trạng thái \"ĐÃ XÓA\" : " + daXoa);
+        return cuDanMapper.toDto(cuDanList);
 
+    }
 
 }

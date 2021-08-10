@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonDichVuService;
@@ -54,5 +55,25 @@ public class HoaDonDichVuController {
     public ResponseEntity<Void> update(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto, @PathVariable("id") Long id) {
         hoaDonDichVuService.update(hoaDonDichVuDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    @GetMapping("")
+    public ResponseEntity<List<HoaDonDichVuDto>> findAll() {
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAll();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/da-thanh-toan")
+    public ResponseEntity<List<HoaDonDichVuDto>> findAllByDaThanhToan() {
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByTrangThai(true);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/chua-thanh-toan")
+    public ResponseEntity<List<HoaDonDichVuDto>> findAllByChuaThanhToan() {
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByTrangThai(false);
+        return ResponseEntity.ok(list);
     }
 }

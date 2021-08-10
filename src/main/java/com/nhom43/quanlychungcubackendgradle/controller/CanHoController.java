@@ -75,20 +75,20 @@ public class CanHoController {
 
     @GetMapping("")
     public ResponseEntity<List<CanHoDto>> findAll() {
-        List<CanHoDto> canHoList = canHoService.findAll();
-        return ResponseEntity.ok(canHoList);
+        List<CanHoDto> list = canHoService.findAll();
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/hoat-dong")
     public ResponseEntity<List<CanHoDto>> findAllByTrangThaiHoatDong() {
-        List<CanHoDto> canHoList = canHoService.findAllByTrangThai(true);
-        return ResponseEntity.ok(canHoList);
+        List<CanHoDto> list = canHoService.findAllByTrangThai(true);
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/khong-hoat-dong")
     public ResponseEntity<List<CanHoDto>> findAllByTrangThaiKhongHoatDong() {
-        List<CanHoDto> canHoList = canHoService.findAllByTrangThai(false);
-        return ResponseEntity.ok(canHoList);
+        List<CanHoDto> list = canHoService.findAllByTrangThai(false);
+        return ResponseEntity.ok(list);
     }
 
     // ------------------------------------------------------------------------------------------------------------- //
@@ -96,26 +96,26 @@ public class CanHoController {
 
     @GetMapping("/{id}/cu-dan")
     public ResponseEntity<?> findAllCuDanByCanHo_Id(@PathVariable("id") Long id) {
-        List<CuDanDto> cuDanList = cuDanService.findAllByCanHo_Id(id);
-        return ResponseEntity.ok(cuDanList);
+        List<CuDanDto> list = cuDanService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}/phuong-tien")
     public ResponseEntity<?> findAllPhuongTienByCanHo_Id(@PathVariable("id") Long id) {
-        List<PhuongTienDto> cuDanList = phuongTienService.findAllByCanHo_Id(id);
-        return ResponseEntity.ok(cuDanList);
+        List<PhuongTienDto> list = phuongTienService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}/the-cu-dan")
     public ResponseEntity<?> findAllTheCuDanByCanHo_Id(@PathVariable("id") Long id) {
-        List<TheCuDanDto> cuDanList = theCuDanService.findAllByCanHo_Id(id);
-        return ResponseEntity.ok(cuDanList);
+        List<TheCuDanDto> list = theCuDanService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}/hoa-don")
     public ResponseEntity<?> findAllHoaDonDichVuByCanHo_Id(@PathVariable("id") Long id) {
-        List<HoaDonDichVuDto> cuDanList = hoaDonDichVuService.findAllByCanHo_Id(id);
-        return ResponseEntity.ok(cuDanList);
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
     }
 
 }

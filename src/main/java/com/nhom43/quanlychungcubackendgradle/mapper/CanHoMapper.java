@@ -7,4 +7,5 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CanHoMapper extends EntityMapper<CanHoDto, CanHo> {
+
 }

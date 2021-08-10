@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,8 +13,14 @@ import java.util.Optional;
 @Repository
 public interface CuDanRepository extends JpaRepository<CuDan, Long>, JpaSpecificationExecutor<CuDan> {
 
-    List<CuDan> findAllByCanHo_Id(Long id);
+    List<CuDan> findByCanHo_Id(Long id);
+
     CuDan findByCanHoAndChuCanHo (CanHo canHo, boolean chuCanHo);
+
     Long countByCanHoAndDaXoa (CanHo canHo, boolean trangThai);
 
+//    @Query(value = "SELECT u FROM CuDan u WHERE u.CuDan.CanHo = ?1 and u.status = 'Processing' or u.house.homeStay = ?1 and u.status = 'Refunded' or u.house.homeStay = ?1 and u.status = 'Cancel' ")
+//    List<CuDan> findAllByCanHo_Id2(Long id);
+
+    List<CuDan> findAllByDaXoa(Boolean daXoa);
 }

@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.dto.TheCuDanDto;
 import com.nhom43.quanlychungcubackendgradle.entity.TheCuDan;
 import com.nhom43.quanlychungcubackendgradle.mapper.TheCuDanMapper;
@@ -54,5 +55,25 @@ public class TheCuDanController {
     public ResponseEntity<Void> update(@RequestBody @Validated TheCuDanDto theCuDanDto, @PathVariable("id") Long id) {
         theCuDanService.update(theCuDanDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    @GetMapping("")
+    public ResponseEntity<List<TheCuDanDto>> findAll() {
+        List<TheCuDanDto> list = theCuDanService.findAll();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/da-xoa")
+    public ResponseEntity<List<TheCuDanDto>> findAllByDaXoa() {
+        List<TheCuDanDto> list = theCuDanService.findAllByDaXoa(true);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/chua-xoa")
+    public ResponseEntity<List<TheCuDanDto>> findAllByChuaXoa() {
+        List<TheCuDanDto> list = theCuDanService.findAllByDaXoa(false);
+        return ResponseEntity.ok(list);
     }
 }

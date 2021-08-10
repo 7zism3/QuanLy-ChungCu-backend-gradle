@@ -1,6 +1,10 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
+import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
+import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
+import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
 import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.PhuongTienRepository;
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -65,16 +70,27 @@ public class PhuongTienService {
         return phuongTienMapper.toDto(list);
     }
 
-    public List<PhuongTienDto> findAllByCanHo_Id(Long id_canHo) {
+    public List<PhuongTienDto> findAllByPhuongTien_Id(Long id) {
 
-        List<PhuongTien> list = repository.findAllByCanHo_Id(id_canHo);
+        List<PhuongTien> list = repository.findAllByPhuongTien_Id(id);
 
-        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có phương tiện nào trong căn hộ này");
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Không tìm thấy phương tiện với id: "+ id);
         return phuongTienMapper.toDto(list);
     }
 
 
     // ------------------------------------------------------------------------------------------------------------- //
 
+    public List<PhuongTienDto> findAllByDaXoa(boolean daXoa) {
+        List<PhuongTien> list = repository.findAllByDaXoa(daXoa);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Không có Phương tiện nào Trạng thái \"ĐÃ XÓA\" : " + daXoa);
+        return phuongTienMapper.toDto(list);
+    }
+
+    public List<PhuongTienDto> findAllByDaXoaAndCanHo_Id(boolean daXoa, Long id) {
+        List<PhuongTien> list = repository.findAllByDaXoa(daXoa);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Tại Căn Hộ ID: " + id + ", Không có Phương tiện nào Trạng thái \"ĐÃ XÓA\" : " + daXoa);
+        return phuongTienMapper.toDto(list);
+    }
 
 }

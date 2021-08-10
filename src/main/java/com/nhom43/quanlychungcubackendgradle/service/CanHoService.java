@@ -92,7 +92,7 @@ public class CanHoService {
                 CuDan chuCanHo = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
                 CanHoDto canHoDto = canHoMapper.toDto(canHo);
                 Long setSoLuongCuDan = cuDanRepository.countByCanHoAndDaXoa(canHo, false);
-                String emailTaiKhoan = "";
+                String emailTaiKhoan = null;
                 if (canHoDto.getIdTaiKhoan() != null)
                     emailTaiKhoan = userRepository.findById(canHoDto.getIdTaiKhoan()).get().getEmail();
                 canHoDto.setChuCanHo(chuCanHo);

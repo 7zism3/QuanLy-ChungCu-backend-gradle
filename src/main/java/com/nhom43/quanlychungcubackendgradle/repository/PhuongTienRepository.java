@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface PhuongTienRepository extends JpaRepository<PhuongTien, Long>, JpaSpecificationExecutor<PhuongTien> {
 
+    List<PhuongTien> findAllByDaXoa(Boolean daXoa);
+    List<PhuongTien> findAllByDaXoaAndCanHo_Id(Boolean daXoa, Long id);
+    List<PhuongTien> findAllByPhuongTien_Id (Long id);
     List<PhuongTien> findAllByCanHo_Id(Long id);
     int countPhuongTienByCanHoAndLoaiXeAndDaXoa (CanHo canHo, String loaiXe, boolean daXoa);
 

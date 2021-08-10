@@ -1,9 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.dto;
 
-import com.nhom43.quanlychungcubackendgradle.entity.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.Set;
 
 @Data
@@ -14,6 +14,10 @@ public class UserDto extends AbstractDto<Long> {
     private String username;
     private String email;
     private String password;
-    private Set<Role> roles;
+    private Instant created;
+    private boolean enabled;
+    private boolean status;
+    private String image;
+    private String role;
 
 }

@@ -1,12 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
-import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
-import com.nhom43.quanlychungcubackendgradle.mapper.CuDanMapper;
 import com.nhom43.quanlychungcubackendgradle.service.CuDanService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,8 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping("/cu-dan")
 @RestController
@@ -59,8 +53,23 @@ public class CuDanController {
 
     // ------------------------------------------------------------------------------------------------------------- //
 
+    @GetMapping("")
+    public ResponseEntity<List<CuDanDto>> findAll() {
+        List<CuDanDto> list = cuDanService.findAll();
+        return ResponseEntity.ok(list);
+    }
 
+    @GetMapping("/da-xoa")
+    public ResponseEntity<List<CuDanDto>> findAllByDaXoa() {
+        List<CuDanDto> list = cuDanService.findAllByDaXoa(true);
+        return ResponseEntity.ok(list);
+    }
 
+    @GetMapping("/chua-xoa")
+    public ResponseEntity<List<CuDanDto>> findAllByChuaXoa() {
+        List<CuDanDto> list = cuDanService.findAllByDaXoa(false);
+        return ResponseEntity.ok(list);
+    }
 
 
 }

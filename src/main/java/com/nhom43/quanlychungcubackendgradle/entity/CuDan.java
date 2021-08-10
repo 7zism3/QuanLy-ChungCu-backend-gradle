@@ -1,17 +1,16 @@
 package com.nhom43.quanlychungcubackendgradle.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
-//import java.util.Date;
 import java.time.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CuDan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,6 @@ public class CuDan {
     private Boolean daXoa;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_can_ho", nullable = false)
-    @JsonIgnore
+    @JoinColumn(name = "id_can_ho")
     private CanHo canHo;
 }

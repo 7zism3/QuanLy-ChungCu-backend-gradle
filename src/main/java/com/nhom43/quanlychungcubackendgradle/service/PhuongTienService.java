@@ -70,13 +70,13 @@ public class PhuongTienService {
         return phuongTienMapper.toDto(list);
     }
 
-    public List<PhuongTienDto> findAllByPhuongTien_Id(Long id) {
-
-        List<PhuongTien> list = repository.findAllByPhuongTien_Id(id);
-
-        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Không tìm thấy phương tiện với id: "+ id);
-        return phuongTienMapper.toDto(list);
-    }
+//    public List<PhuongTienDto> findAllByPhuongTien_Id(Long id) {
+//
+//        List<PhuongTien> list = repository.findAllByPhuongTien_Id(id);
+//
+//        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND,  "Không tìm thấy phương tiện với id: "+ id);
+//        return phuongTienMapper.toDto(list);
+//    }
 
 
     // ------------------------------------------------------------------------------------------------------------- //

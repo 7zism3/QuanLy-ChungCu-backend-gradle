@@ -77,5 +77,31 @@ public class TheCuDanService {
 
     // ------------------------------------------------------------------------------------------------------------- //
 
+    public List<TheCuDanDto> findAllByDaXoa(boolean daXoa) {
+        List<TheCuDan> list = repository.findAllByDaXoa(daXoa);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thẻ cư dân nào Trạng thái Đã xóa = "+ daXoa);
+        return theCuDanMapper.toDto(list);
+    }
 
+    public List<TheCuDanDto> findAllByDaXoaAndKichHoat(boolean daXoa, boolean kichHoat) {
+        List<TheCuDan> list = repository.findAllByDaXoaAndKichHoat(daXoa, kichHoat);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thẻ cư dân nào Trạng thái Đã xóa = "+ daXoa);
+        return theCuDanMapper.toDto(list);
+    }
+
+    public List<TheCuDanDto> findAllByCanHo_IdAndDaXoa(Long id_canHo, boolean daXoa) {
+
+        List<TheCuDan> list = repository.findAllByCanHo_IdAndDaXoa(id_canHo, daXoa);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có thẻ cư dân nào cho căn hộ này");
+        return theCuDanMapper.toDto(list);
+    }
+
+    public List<TheCuDanDto> findAllByCanHo_IdAndDaXoaAndKichHoat(Long id_canHo, boolean daXoa, boolean kichHoat) {
+
+        List<TheCuDan> list = repository.findAllByCanHo_IdAndDaXoaAndKichHoat(id_canHo, daXoa, kichHoat);
+
+        if (list.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có thẻ cư dân nào cho căn hộ này");
+        return theCuDanMapper.toDto(list);
+    }
 }

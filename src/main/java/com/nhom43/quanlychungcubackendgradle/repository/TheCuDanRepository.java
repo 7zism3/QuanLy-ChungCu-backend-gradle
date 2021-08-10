@@ -13,4 +13,11 @@ public interface TheCuDanRepository extends JpaRepository<TheCuDan, Long>, JpaSp
 
     List<TheCuDan> findAllByCanHo_Id(Long id);
 
+    List<TheCuDan> findAllByDaXoa(Boolean daXoa);
+
+    List<TheCuDan> findAllByDaXoaAndKichHoat(Boolean daXoa, Boolean kichHoat);
+
+    List<TheCuDan> findAllByCanHo_IdAndDaXoa(Long id_canHo, boolean daXoa);
+
+    List<TheCuDan> findAllByCanHo_IdAndDaXoaAndKichHoat(Long id_canHo, boolean daXoa, boolean kichHoat);
 }

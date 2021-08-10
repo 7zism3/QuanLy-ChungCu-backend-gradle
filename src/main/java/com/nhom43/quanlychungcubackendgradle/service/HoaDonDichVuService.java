@@ -67,6 +67,12 @@ public class HoaDonDichVuService {
         return hoaDonDichVuMapper.toDto(list);
     }
 
+    public List<HoaDonDichVuDto> findAllByTrangThai(boolean trangThai) {
+        List<HoaDonDichVu> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        return hoaDonDichVuMapper.toDto(list);
+    }
+
     public List<HoaDonDichVuDto> findAllByCanHo_Id(Long id_canHo) {
 
         List<HoaDonDichVu> list = repository.findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(id_canHo);

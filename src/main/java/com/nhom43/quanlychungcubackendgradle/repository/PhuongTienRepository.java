@@ -14,7 +14,7 @@ public interface PhuongTienRepository extends JpaRepository<PhuongTien, Long>, J
 
     List<PhuongTien> findAllByDaXoa(Boolean daXoa);
     List<PhuongTien> findAllByDaXoaAndCanHo_Id(Boolean daXoa, Long id);
-    List<PhuongTien> findAllByPhuongTien_Id (Long id);
+    List<PhuongTien> findAllByLoaiXe (Long id);
     List<PhuongTien> findAllByCanHo_Id(Long id);
     int countPhuongTienByCanHoAndLoaiXeAndDaXoa (CanHo canHo, String loaiXe, boolean daXoa);
 

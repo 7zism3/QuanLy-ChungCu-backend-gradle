@@ -102,15 +102,22 @@ public class CanHoController {
 
     @GetMapping("/{id}/phuong-tien")
     public ResponseEntity<?> findAllPhuongTienByCanHo_Id(@PathVariable("id") Long id) {
-        List<PhuongTienDto> list = phuongTienService.findAllByCanHo_Id(id);
+        List<PhuongTienDto> list = phuongTienService.findAllByDaXoaAndCanHo_Id(false, id);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}/the-cu-dan/chua-kich-hoat")
+    public ResponseEntity<?> findAllByCanHo_IdAndDaXoaAndKichHoat(@PathVariable("id") Long id) {
+        List<TheCuDanDto> list = theCuDanService.findAllByCanHo_IdAndDaXoaAndKichHoat(id, false, false);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}/the-cu-dan")
     public ResponseEntity<?> findAllTheCuDanByCanHo_Id(@PathVariable("id") Long id) {
-        List<TheCuDanDto> list = theCuDanService.findAllByCanHo_Id(id);
+        List<TheCuDanDto> list = theCuDanService.findAllByCanHo_IdAndDaXoa(id, false);
         return ResponseEntity.ok(list);
     }
+
 
     @GetMapping("/{id}/hoa-don")
     public ResponseEntity<?> findAllHoaDonDichVuByCanHo_Id(@PathVariable("id") Long id) {

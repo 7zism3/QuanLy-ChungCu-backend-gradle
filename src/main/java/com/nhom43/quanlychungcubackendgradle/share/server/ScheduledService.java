@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -60,7 +61,7 @@ public class ScheduledService {
     @Scheduled(cron = "0 32 17 * * ?")
     public void TaoHoaDonHangThang() {
         try {
-            Instant time = Instant.now();
+            LocalDateTime time = LocalDateTime.now();
             System.out.println("-- Tạo hóa đơn cố định " + time);
             // Lấy ra danh sách các căn hộ đã có ng sinh sống
             List<CanHo> canHoList = canHoRepository.findAllByTrangThai(true);

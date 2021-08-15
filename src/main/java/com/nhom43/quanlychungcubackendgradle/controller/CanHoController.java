@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/can-ho")
+@RequestMapping("/api/can-ho")
 @RestController
 public class CanHoController {
     private final CanHoService canHoService;

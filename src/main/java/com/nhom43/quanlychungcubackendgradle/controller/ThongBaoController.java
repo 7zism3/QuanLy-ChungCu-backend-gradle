@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/thong-bao")
+@RequestMapping("/api/thong-bao")
 @RestController
 public class ThongBaoController {
     private final ThongBaoService thongBaoService;

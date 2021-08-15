@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/dich-vu-co-dinh")
+@RequestMapping("/api/dich-vu-co-dinh")
 @RestController
 public class DichVuCoDinhController {
     private final DichVuCoDinhService dichVuCoDinhService;

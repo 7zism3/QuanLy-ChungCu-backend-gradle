@@ -23,11 +23,11 @@ public class PhuongTien {
 
     private String bienKiemSoat;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_can_ho", nullable = false)
     private CanHo canHo;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_the_cu_dan", nullable = false)
     private TheCuDan theCuDan;
 }

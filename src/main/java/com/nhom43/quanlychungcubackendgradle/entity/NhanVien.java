@@ -20,7 +20,7 @@ public class NhanVien {
 
     private String email;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_bo_phan", nullable = false)
     private BoPhan boPhan;
 }

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/chi-tiet-hoa-don-dich-vu")
+@RequestMapping("/api/chi-tiet-hoa-don-dich-vu")
 @RestController
 public class ChiTietHoaDonDichVuController {
     private final ChiTietHoaDonDichVuService chiTietHoaDonDichVuService;

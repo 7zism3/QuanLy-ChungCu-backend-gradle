@@ -7,7 +7,10 @@ import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.CuDanRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
+import com.nhom43.quanlychungcubackendgradle.share.security.service.JwtProvider;
 import org.mapstruct.factory.Mappers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -29,6 +32,7 @@ public class CanHoService {
     private final CuDanRepository cuDanRepository;
     private final CanHoMapper canHoMapper;
     private final UserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     public CanHoService(CanHoRepository repository
             , CanHoMapper canHoMapper
@@ -86,12 +90,16 @@ public class CanHoService {
 
     public List<CanHoDto> findAllByTrangThai(boolean trangThai) {
         List<CanHo> canHoList = repository.findAllByTrangThai(trangThai);
+        System.out.println(canHoList.size());
         if (trangThai == true) {
+
             List<CanHoDto> canHoListDto = new ArrayList<>();
             for (CanHo canHo : canHoList) {
                 CuDan chuCanHo = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
+                System.out.println(chuCanHo.toString());
                 CanHoDto canHoDto = canHoMapper.toDto(canHo);
                 Long setSoLuongCuDan = cuDanRepository.countByCanHoAndDaXoa(canHo, false);
+//                logger.error(chuCanHo.toString() + " -- ", setSoLuongCuDan);
                 String emailTaiKhoan = null;
                 if (canHoDto.getIdTaiKhoan() != null)
                     emailTaiKhoan = userRepository.findById(canHoDto.getIdTaiKhoan()).get().getEmail();

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/hoa-don-dich-vu")
+@RequestMapping("/api/hoa-don-dich-vu")
 @RestController
 public class HoaDonDichVuController {
     private final HoaDonDichVuService hoaDonDichVuService;

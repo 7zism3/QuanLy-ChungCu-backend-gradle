@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/api/profile")
 @AllArgsConstructor
 public class ProfileController {
 

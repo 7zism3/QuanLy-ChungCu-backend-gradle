@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/refresh-token")
+@RequestMapping("/api/refresh-token")
 @RestController
 public class RefreshTokenController {
     private final RefreshTokenService2 refreshTokenService;

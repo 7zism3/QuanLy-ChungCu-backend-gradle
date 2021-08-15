@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/cu-dan")
+@RequestMapping("/api/cu-dan")
 @RestController
 public class CuDanController {
     private final CuDanService cuDanService;

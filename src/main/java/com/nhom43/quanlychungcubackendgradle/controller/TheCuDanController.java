@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/the-cu-dan")
+@RequestMapping("/api/the-cu-dan")
 @RestController
 public class TheCuDanController {
     private final TheCuDanService theCuDanService;

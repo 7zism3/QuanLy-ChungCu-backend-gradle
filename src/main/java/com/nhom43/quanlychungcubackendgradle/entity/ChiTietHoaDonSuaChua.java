@@ -19,15 +19,15 @@ public class ChiTietHoaDonSuaChua {
 
     private String moTa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_nhan_vien", nullable = false)
     private NhanVien nhanVien;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_loai_sua_chua", nullable = false)
     private LoaiSuaChua LoaiSuaChua;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_hoa_don_sua_chua", nullable = false)
     private HoaDonSuaChua hoaDonSuaChua;
 }

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/phuong-tien")
+@RequestMapping("/api/phuong-tien")
 @RestController
 public class PhuongTienController {
     private final PhuongTienService phuongTienService;

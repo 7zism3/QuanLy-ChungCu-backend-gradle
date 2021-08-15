@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/loai-sua-chua")
+@RequestMapping("/api/loai-sua-chua")
 @RestController
 public class LoaiSuaChuaController {
     private final LoaiSuaChuaService loaiSuaChuaService;

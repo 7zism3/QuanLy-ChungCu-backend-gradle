@@ -53,8 +53,18 @@ public class CanHoService {
     }
 
     public CanHoDto findById(Long id) {
-        return canHoMapper.toDto(repository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tồn tại căn hộ id: " + id)));
+        CanHo canHo = repository.findById(id).get();
+        CanHoDto canHoDto;
+        if (canHo == null) {
+            throw new ResourceNotFoundException("Chưa tồn tại căn hộ");
+        }
+        canHoDto = canHoMapper.toDto(canHo);
+        boolean trangThai = canHo.getTrangThai();
+        if (trangThai == true) {
+            CuDan chuCanHo = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
+            canHoDto.setChuCanHo(chuCanHo);
+        }
+        return canHoDto;
     }
 
     public Page<CanHoDto> findByCondition(CanHoDto canHoDto, Pageable pageable) {

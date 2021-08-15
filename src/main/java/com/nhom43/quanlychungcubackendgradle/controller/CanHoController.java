@@ -26,18 +26,21 @@ public class CanHoController {
     private final TheCuDanService theCuDanService;
     private final CuDanService cuDanService;
     private final HoaDonDichVuService hoaDonDichVuService;
+    private final ChiTietHoaDonDichVuService chiTietHoaDonDichVuService;
 
     public CanHoController(CanHoService canHoService
             , PhuongTienService phuongTienService
             , TheCuDanService theCuDanService
             , CuDanService cuDanService
             , HoaDonDichVuService hoaDonDichVuService
+            , ChiTietHoaDonDichVuService chiTietHoaDonDichVuService
     ) {
         this.canHoService = canHoService;
         this.phuongTienService = phuongTienService;
         this.theCuDanService = theCuDanService;
         this.cuDanService = cuDanService;
         this.hoaDonDichVuService = hoaDonDichVuService;
+        this.chiTietHoaDonDichVuService = chiTietHoaDonDichVuService;
     }
 
     @PostMapping
@@ -124,5 +127,6 @@ public class CanHoController {
         List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByCanHo_Id(id);
         return ResponseEntity.ok(list);
     }
+
 
 }

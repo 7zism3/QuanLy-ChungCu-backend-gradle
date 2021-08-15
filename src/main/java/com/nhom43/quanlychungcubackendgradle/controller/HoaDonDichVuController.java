@@ -1,9 +1,12 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
+import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
+import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonDichVuService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonDichVuService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,9 +25,11 @@ import java.util.stream.Collectors;
 @RestController
 public class HoaDonDichVuController {
     private final HoaDonDichVuService hoaDonDichVuService;
+    private final ChiTietHoaDonDichVuService chiTietHoaDonDichVuService;
 
-    public HoaDonDichVuController(HoaDonDichVuService hoaDonDichVuService) {
+    public HoaDonDichVuController(HoaDonDichVuService hoaDonDichVuService, ChiTietHoaDonDichVuService chiTietHoaDonDichVuService) {
         this.hoaDonDichVuService = hoaDonDichVuService;
+        this.chiTietHoaDonDichVuService = chiTietHoaDonDichVuService;
     }
 
     @PostMapping
@@ -74,6 +79,12 @@ public class HoaDonDichVuController {
     @GetMapping("/chua-thanh-toan")
     public ResponseEntity<List<HoaDonDichVuDto>> findAllByChuaThanhToan() {
         List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByTrangThai(false);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}/chi-tiet-hoa-don-dich-vu")
+    public ResponseEntity<?> findAllCCHHDVByHoaDonDichVu_CanHo_Id(@PathVariable("id") Long id) {
+        List<ChiTietHoaDonDichVuDto> list = chiTietHoaDonDichVuService.findAllByHoaDonDichVu_Id(id);
         return ResponseEntity.ok(list);
     }
 }

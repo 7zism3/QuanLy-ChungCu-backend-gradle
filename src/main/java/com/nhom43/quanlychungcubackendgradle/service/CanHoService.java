@@ -32,7 +32,6 @@ public class CanHoService {
     private final CuDanRepository cuDanRepository;
     private final CanHoMapper canHoMapper;
     private final UserRepository userRepository;
-    private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     public CanHoService(CanHoRepository repository
             , CanHoMapper canHoMapper
@@ -96,10 +95,9 @@ public class CanHoService {
             List<CanHoDto> canHoListDto = new ArrayList<>();
             for (CanHo canHo : canHoList) {
                 CuDan chuCanHo = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
-                System.out.println(chuCanHo.toString());
+//                System.out.println(chuCanHo.toString());
                 CanHoDto canHoDto = canHoMapper.toDto(canHo);
                 Long setSoLuongCuDan = cuDanRepository.countByCanHoAndDaXoa(canHo, false);
-//                logger.error(chuCanHo.toString() + " -- ", setSoLuongCuDan);
                 String emailTaiKhoan = null;
                 if (canHoDto.getIdTaiKhoan() != null)
                     emailTaiKhoan = userRepository.findById(canHoDto.getIdTaiKhoan()).get().getEmail();

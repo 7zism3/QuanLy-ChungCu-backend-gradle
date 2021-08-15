@@ -18,11 +18,11 @@ public class ChiTietHoaDonDichVu {
 
     private Integer soLuong;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_dich_vu_co_dinh", nullable = false)
     private DichVuCoDinh dichVuCoDinh;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_hoa_don_dich_vu", nullable = false)
     private HoaDonDichVu hoaDonDichVu;
 

@@ -3,6 +3,8 @@ package com.nhom43.quanlychungcubackendgradle.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -19,7 +21,7 @@ public class ThongBao {
 
     private String noiDung;
 
-    private LocalTime thoiGian;
+    private LocalDateTime thoiGian;
 
 }
 

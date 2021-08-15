@@ -87,4 +87,10 @@ public class HoaDonDichVuController {
         List<ChiTietHoaDonDichVuDto> list = chiTietHoaDonDichVuService.findAllByHoaDonDichVu_Id(id);
         return ResponseEntity.ok(list);
     }
+
+    @PutMapping("/{id}/thanh-toan-tien-mat")
+    public ResponseEntity<Void> thanhToan(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto, @PathVariable("id") Long id) {
+        hoaDonDichVuService.thanhToanTienMat(hoaDonDichVuDto, id);
+        return ResponseEntity.ok().build();
+    }
 }

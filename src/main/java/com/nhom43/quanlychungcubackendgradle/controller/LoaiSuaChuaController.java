@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.entity.LoaiSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.LoaiSuaChuaMapper;
@@ -54,5 +55,15 @@ public class LoaiSuaChuaController {
     public ResponseEntity<Void> update(@RequestBody @Validated LoaiSuaChuaDto loaiSuaChuaDto, @PathVariable("id") Long id) {
         loaiSuaChuaService.update(loaiSuaChuaDto, id);
         return ResponseEntity.ok().build();
+    }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    @GetMapping("")
+    public ResponseEntity<List<LoaiSuaChuaDto>> findAll() {
+        List<LoaiSuaChuaDto> list = loaiSuaChuaService.findAll();
+        return ResponseEntity.ok(list);
     }
 }

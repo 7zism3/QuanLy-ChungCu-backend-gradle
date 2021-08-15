@@ -1,12 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
-import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonDichVuRepository;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -17,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -54,6 +51,7 @@ public class HoaDonDichVuService {
     public HoaDonDichVuDto update(HoaDonDichVuDto hoaDonDichVuDto, Long id) {
         HoaDonDichVuDto data = findById(id);
         BeanUtils.copyProperties(hoaDonDichVuDto, data);
+        data.setNgayThanhToan(LocalDateTime.now());
         return save(data);
     }
 
@@ -80,6 +78,13 @@ public class HoaDonDichVuService {
         if (list.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có hóa đơn nào với căn hộ này");
         return hoaDonDichVuMapper.toDto(list);
+    }
+
+    public HoaDonDichVuDto thanhToanTienMat(HoaDonDichVuDto hoaDonDichVuDto, Long id) {
+        HoaDonDichVuDto data = findById(id);
+        BeanUtils.copyProperties(hoaDonDichVuDto, data);
+        data.setLoaiHinhThanhToan("Tien Mat");
+        return save(data);
     }
 
     // ------------------------------------------------------------------------------------------------------------- //

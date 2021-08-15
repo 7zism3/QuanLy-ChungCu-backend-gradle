@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
 import com.nhom43.quanlychungcubackendgradle.entity.DichVuCoDinh;
 import com.nhom43.quanlychungcubackendgradle.mapper.DichVuCoDinhMapper;
@@ -54,5 +55,15 @@ public class DichVuCoDinhController {
     public ResponseEntity<Void> update(@RequestBody @Validated DichVuCoDinhDto dichVuCoDinhDto, @PathVariable("id") Long id) {
         dichVuCoDinhService.update(dichVuCoDinhDto, id);
         return ResponseEntity.ok().build();
+    }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    @GetMapping("")
+    public ResponseEntity<List<DichVuCoDinhDto>> findAll() {
+        List<DichVuCoDinhDto> list = dichVuCoDinhService.findAll();
+        return ResponseEntity.ok(list);
     }
 }

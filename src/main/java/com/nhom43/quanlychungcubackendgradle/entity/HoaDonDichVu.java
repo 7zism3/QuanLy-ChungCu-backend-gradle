@@ -20,6 +20,11 @@ public class HoaDonDichVu {
 
     private Boolean trangThai;
 
+    private String tenNguoiThanhToan;
+    private String soDienThoai;
+    private String loaiHinhThanhToan;
+    private LocalDateTime ngayThanhToan;
+
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_can_ho", nullable = false)
     private CanHo canHo;

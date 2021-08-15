@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class TheCuDan {
 
     private String maThe;
 
-    private Instant ngayTao;
+    private LocalDate ngayTao;
 
     private Boolean kichHoat;
 

@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
+import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.DichVuCoDinh;
 import com.nhom43.quanlychungcubackendgradle.mapper.DichVuCoDinhMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.DichVuCoDinhRepository;
@@ -52,4 +54,11 @@ public class DichVuCoDinhService {
         BeanUtils.copyProperties(dichVuCoDinhDto, data);
         return save(data);
     }
+
+    public List<DichVuCoDinhDto> findAll() {
+        List<DichVuCoDinh> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tạo loại dịch vụ cố định");
+       return dichVuCoDinhMapper.toDto(list);
+    }
+
 }

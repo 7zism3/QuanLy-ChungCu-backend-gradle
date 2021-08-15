@@ -1,6 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
+import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
 import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.entity.DichVuCoDinh;
 import com.nhom43.quanlychungcubackendgradle.entity.LoaiSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.LoaiSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.LoaiSuaChuaRepository;
@@ -51,5 +54,11 @@ public class LoaiSuaChuaService {
         LoaiSuaChuaDto data = findById(id);
         BeanUtils.copyProperties(loaiSuaChuaDto, data);
         return save(data);
+    }
+
+    public List<LoaiSuaChuaDto> findAll() {
+        List<LoaiSuaChua> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tạo loại hình sửa chữa");
+        return loaiSuaChuaMapper.toDto(list);
     }
 }

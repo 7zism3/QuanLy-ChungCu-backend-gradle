@@ -67,7 +67,7 @@ public class ScheduledService {
             List<CanHo> canHoList = canHoRepository.findAllByTrangThai(true);
             for (CanHo canHo : canHoList) {
                 // Tạo hóa đơn
-                HoaDonDichVu hoaDonDichVu = new HoaDonDichVu(null, time, false, canHo);
+                HoaDonDichVu hoaDonDichVu = new HoaDonDichVu(null, time, false, null, null, null, null, canHo);
                 hoaDonDichVuRepository.save(hoaDonDichVu);
                 // Thêm hóa đơn chi tiết phí dịch vụ bảo trì
                 DichVuCoDinh dvBaoTri = dichVuCoDinhRepository.findFirstByTen("Bao tri");

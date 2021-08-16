@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ChiTietHoaDonSuaChuaRepository;
@@ -10,7 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -51,5 +55,12 @@ public class ChiTietHoaDonSuaChuaService {
         ChiTietHoaDonSuaChuaDto data = findById(id);
         BeanUtils.copyProperties(chiTietHoaDonSuaChuaDto, data);
         return save(data);
+    }
+
+    public List<ChiTietHoaDonSuaChuaDto> findByHoaDonSuaChua_Id(Long id) {
+        List<ChiTietHoaDonSuaChua> list = repository.findByHoaDonSuaChua_Id(id);
+        if (list.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có hóa đơn chi tiết nào trong hóa đơn này");
+        return chiTietHoaDonSuaChuaMapper.toDto(list);
     }
 }

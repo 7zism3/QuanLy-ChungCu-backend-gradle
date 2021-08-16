@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
@@ -10,7 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -52,4 +56,31 @@ public class HoaDonSuaChuaService {
         BeanUtils.copyProperties(hoaDonSuaChuaDto, data);
         return save(data);
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    public List<HoaDonSuaChuaDto> findAll() {
+        List<HoaDonSuaChua> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        return hoaDonSuaChuaMapper.toDto(list);
+    }
+
+    public List<HoaDonSuaChuaDto> findAllByTrangThai(boolean trangThai) {
+        List<HoaDonSuaChua> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        return hoaDonSuaChuaMapper.toDto(list);
+    }
+
+    public List<HoaDonSuaChuaDto> findAllByCanHo_Id(Long id_canHo) {
+
+        List<HoaDonSuaChua> list = repository.findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(id_canHo);
+
+        if (list.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Chưa có hóa đơn nào với căn hộ này");
+        return hoaDonSuaChuaMapper.toDto(list);
+    }
+
+
 }

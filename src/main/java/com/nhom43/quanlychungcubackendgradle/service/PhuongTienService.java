@@ -1,25 +1,17 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
-import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
-import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
-import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
 import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.PhuongTienRepository;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

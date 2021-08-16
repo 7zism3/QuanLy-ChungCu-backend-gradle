@@ -1,11 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
-import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonDichVu;
-import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonDichVuService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -13,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping("/api/chi-tiet-hoa-don-dich-vu")
 @RestController

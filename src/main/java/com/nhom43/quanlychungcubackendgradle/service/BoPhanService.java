@@ -1,11 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
-import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
 import com.nhom43.quanlychungcubackendgradle.mapper.BoPhanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.BoPhanRepository;
-import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 

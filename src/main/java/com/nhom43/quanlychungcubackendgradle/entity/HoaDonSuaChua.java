@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +18,14 @@ public class HoaDonSuaChua {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate ngayTao;
+    private LocalDateTime ngayTao;
 
     private Boolean trangThai;
+
+    private String tenNguoiThanhToan;
+    private String soDienThoai;
+    private String loaiHinhThanhToan;
+    private LocalDateTime ngayThanhToan;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_can_ho", nullable = false)

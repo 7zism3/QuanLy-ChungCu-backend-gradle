@@ -1,12 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
-import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
-import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ChiTietHoaDonSuaChuaRepository;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,7 +15,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

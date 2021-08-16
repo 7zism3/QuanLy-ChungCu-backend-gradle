@@ -1,11 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.RefreshTokenDto;
-import com.nhom43.quanlychungcubackendgradle.entity.RefreshToken;
-import com.nhom43.quanlychungcubackendgradle.mapper.RefreshTokenMapper;
 import com.nhom43.quanlychungcubackendgradle.service.RefreshTokenService2;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -13,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping("/api/refresh-token")
 @RestController

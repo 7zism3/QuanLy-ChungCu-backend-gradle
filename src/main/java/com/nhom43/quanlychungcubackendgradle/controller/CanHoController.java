@@ -1,12 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.*;
-import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
-import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
-import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.service.*;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,8 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @RequestMapping("/api/can-ho")
 @RestController
@@ -72,6 +67,7 @@ public class CanHoController {
         canHoService.update(canHoDto, id);
         return ResponseEntity.ok().build();
     }
+
 
     // ------------------------------------------------------------------------------------------------------------- //
 

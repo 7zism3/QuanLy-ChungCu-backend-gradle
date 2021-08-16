@@ -4,7 +4,6 @@ import com.nhom43.quanlychungcubackendgradle.dto.ThongBaoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ThongBao;
 import com.nhom43.quanlychungcubackendgradle.mapper.ThongBaoMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ThongBaoRepository;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

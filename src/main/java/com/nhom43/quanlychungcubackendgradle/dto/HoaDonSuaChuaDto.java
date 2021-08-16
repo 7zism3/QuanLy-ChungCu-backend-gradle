@@ -17,4 +17,8 @@ public class HoaDonSuaChuaDto extends AbstractDto<Long> {
     private Boolean trangThai;
     private CanHo canHo;
 
+    private String tenNguoiThanhToan;
+    private String soDienThoai;
+    private String loaiHinhThanhToan;
+    private LocalDateTime ngayThanhToan;
 }

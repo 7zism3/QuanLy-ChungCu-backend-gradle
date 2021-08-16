@@ -1,12 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.dto.TheCuDanDto;
-import com.nhom43.quanlychungcubackendgradle.entity.TheCuDan;
-import com.nhom43.quanlychungcubackendgradle.mapper.TheCuDanMapper;
 import com.nhom43.quanlychungcubackendgradle.service.TheCuDanService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,8 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping("/api/the-cu-dan")
 @RestController

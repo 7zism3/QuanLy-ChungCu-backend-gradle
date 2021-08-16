@@ -1,9 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.dto;
 
 import lombok.Data;
-import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @Data
 public class AbstractDto<E> {

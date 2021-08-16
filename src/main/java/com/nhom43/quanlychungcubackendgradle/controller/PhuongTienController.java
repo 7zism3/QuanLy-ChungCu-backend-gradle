@@ -1,9 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
-import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
-import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
 import com.nhom43.quanlychungcubackendgradle.service.PhuongTienService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,8 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping("/api/phuong-tien")
 @RestController

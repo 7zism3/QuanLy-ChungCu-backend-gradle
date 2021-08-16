@@ -12,7 +12,6 @@ public class NhanVienDto extends AbstractDto<Long> {
     private String hoTen;
     private String soDienThoai;
     private String email;
-    private String bienKiemSoat;
     private BoPhan boPhan;
 
 }

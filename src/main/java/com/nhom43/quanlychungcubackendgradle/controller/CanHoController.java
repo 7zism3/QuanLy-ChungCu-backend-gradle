@@ -21,21 +21,21 @@ public class CanHoController {
     private final TheCuDanService theCuDanService;
     private final CuDanService cuDanService;
     private final HoaDonDichVuService hoaDonDichVuService;
-    private final ChiTietHoaDonDichVuService chiTietHoaDonDichVuService;
+    private final HoaDonSuaChuaService hoaDonSuaChuaService;
 
     public CanHoController(CanHoService canHoService
             , PhuongTienService phuongTienService
             , TheCuDanService theCuDanService
             , CuDanService cuDanService
             , HoaDonDichVuService hoaDonDichVuService
-            , ChiTietHoaDonDichVuService chiTietHoaDonDichVuService
+            , HoaDonSuaChuaService hoaDonSuaChuaService
     ) {
         this.canHoService = canHoService;
         this.phuongTienService = phuongTienService;
         this.theCuDanService = theCuDanService;
         this.cuDanService = cuDanService;
         this.hoaDonDichVuService = hoaDonDichVuService;
-        this.chiTietHoaDonDichVuService = chiTietHoaDonDichVuService;
+        this.hoaDonSuaChuaService =hoaDonSuaChuaService;
     }
 
     @PostMapping
@@ -124,5 +124,9 @@ public class CanHoController {
         return ResponseEntity.ok(list);
     }
 
-
+    @GetMapping("/{id}/hoa-don-sua-chua")
+    public ResponseEntity<?> findAllHoaDonSuaChuaByCanHo_Id(@PathVariable("id") Long id) {
+        List<HoaDonSuaChuaDto> list = hoaDonSuaChuaService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
+    }
 }

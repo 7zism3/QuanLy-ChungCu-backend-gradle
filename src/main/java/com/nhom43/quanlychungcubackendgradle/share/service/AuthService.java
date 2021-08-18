@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,6 +49,7 @@ public class AuthService {
     private final AppConfig appConfig;
 
     public void register(RegisterRequest registerRequest) {
+        registerRequest.setUsername(registerRequest.getUsername().toLowerCase());
         Optional<User> username = userRepository.findByUsername(registerRequest.getUsername());
         Optional<User> email = userRepository.findByEmail(registerRequest.getEmail());
         if (username.isPresent() || email.isPresent()) {
@@ -101,6 +103,7 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
+//        loginRequest.setUsername(loginRequest.getUsername().toLowerCase());
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);

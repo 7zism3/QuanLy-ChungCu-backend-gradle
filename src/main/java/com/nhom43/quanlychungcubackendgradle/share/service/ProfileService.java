@@ -58,6 +58,8 @@ public class ProfileService {
 
     public void edit(ProfileRequest profileRequest) {
         Optional<User> u1 = userRepository.findByEmail(profileRequest.getEmail());
+//        System.out.println(u1.get().toString() + "----------------");
+//        System.out.println(authService.getCurrentUser().toString());
         if (!u1.isPresent()) {
             userRepository.save(profileMapper.mapEditToDtoById(profileRequest, authService.getCurrentUser()));
         } else {

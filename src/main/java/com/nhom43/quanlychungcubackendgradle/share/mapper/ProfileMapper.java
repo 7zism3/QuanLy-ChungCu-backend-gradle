@@ -22,8 +22,8 @@ public abstract class ProfileMapper {
 
 
     @Mapping(target = "id", source = "profileRequest.id" )
-    @Mapping(target = "username", source = "profileRequest.username" )
-    @Mapping(target = "password", source = "profileRequest.password" )
+    @Mapping(target = "username", source = "user.username" )
+    @Mapping(target = "password", source = "user.password" )
     @Mapping(target = "email", source = "profileRequest.email" )
     @Mapping(target = "image", source = "profileRequest.image" )
     @Mapping(target = "role", source = "user.role" )
@@ -33,7 +33,7 @@ public abstract class ProfileMapper {
     public abstract User mapEditToDtoById(ProfileRequest profileRequest, User user);
 
     @Mapping(target = "id", source = "profileRequest.id" )
-    @Mapping(target = "username", source = "profileRequest.username" )
+    @Mapping(target = "username", source = "user.username" )
     @Mapping(target = "password", source = "profileRequest.password" )
     @Mapping(target = "email", source = "profileRequest.email" )
     @Mapping(target = "image", source = "profileRequest.image" )

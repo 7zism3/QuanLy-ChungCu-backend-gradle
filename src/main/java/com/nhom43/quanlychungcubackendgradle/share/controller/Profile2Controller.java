@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.ResponseEntity.status;
 
-@RestController
 @RequestMapping("/api/profile")
+@RestController
 @AllArgsConstructor
-public class ProfileController {
-
+public class Profile2Controller {
 
     private final ProfileService profileService;
 

@@ -121,6 +121,7 @@ public class AuthService {
                 .image(user.getImage())
                 .idCanHo(idCanHo)
                 .email(user.getEmail())
+                .id(user.getId())
                 .build();
     }
 

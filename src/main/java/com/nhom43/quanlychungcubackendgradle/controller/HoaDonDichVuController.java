@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
+import com.nhom43.quanlychungcubackendgradle.dto.request.HoaDonDichVuRequest;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonDichVuService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonDichVuService;
 import org.springframework.data.domain.Page;
@@ -50,8 +51,8 @@ public class HoaDonDichVuController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto, @PathVariable("id") Long id) {
-        hoaDonDichVuService.update(hoaDonDichVuDto, id);
+    public ResponseEntity<Void> update(@RequestBody @Validated HoaDonDichVuRequest hoaDonDichVuRequest, @PathVariable("id") Long id) {
+        hoaDonDichVuService.update(hoaDonDichVuRequest, id);
         return ResponseEntity.ok().build();
     }
 

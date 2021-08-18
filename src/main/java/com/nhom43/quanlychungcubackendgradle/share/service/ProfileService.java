@@ -57,11 +57,11 @@ public class ProfileService {
     }
 
     public void edit(ProfileRequest profileRequest) {
-        Optional<User> email = userRepository.findByEmail(profileRequest.getEmail());
-        if (email.isPresent()) {
+        Optional<User> u1 = userRepository.findByEmail(profileRequest.getEmail());
+        if (!u1.isPresent()) {
             userRepository.save(profileMapper.mapEditToDtoById(profileRequest, authService.getCurrentUser()));
         } else {
-            if (email.get().getEmail().equals(profileRequest.getEmail()) && email.get().getId().equals(profileRequest.getId())) {
+            if (u1.get().getEmail().equals(profileRequest.getEmail()) && u1.get().getId().equals(profileRequest.getId())) {
                 userRepository.save(profileMapper.mapEditToDtoById(profileRequest, authService.getCurrentUser()));
             } else {
                 throw new SpringException("Email đã tồn tại");

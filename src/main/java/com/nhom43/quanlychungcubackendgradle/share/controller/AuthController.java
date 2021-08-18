@@ -13,8 +13,8 @@ import javax.validation.Valid;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@RestController
 @RequestMapping("/api/auth")
+@RestController
 @AllArgsConstructor
 public class AuthController {
 

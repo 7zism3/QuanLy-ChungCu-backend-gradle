@@ -3,7 +3,7 @@ package com.nhom43.quanlychungcubackendgradle.share.controller;
 
 import com.nhom43.quanlychungcubackendgradle.share.dto.request.ProfileRequest;
 import com.nhom43.quanlychungcubackendgradle.share.dto.response.ProfileResponse;
-import com.nhom43.quanlychungcubackendgradle.share.server.ProfileService;
+import com.nhom43.quanlychungcubackendgradle.share.service.ProfileService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

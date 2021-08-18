@@ -1,5 +1,4 @@
-package com.nhom43.quanlychungcubackendgradle.share.server;
-
+package com.nhom43.quanlychungcubackendgradle.share.service;
 
 
 import com.nhom43.quanlychungcubackendgradle.entity.RefreshToken;
@@ -7,6 +6,7 @@ import com.nhom43.quanlychungcubackendgradle.entity.User;
 import com.nhom43.quanlychungcubackendgradle.entity.VerificationTokenAccount;
 import com.nhom43.quanlychungcubackendgradle.entity.VerificationTokenPassword;
 import com.nhom43.quanlychungcubackendgradle.ex.SpringException;
+import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.VerificationTokenAccountRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.VerificationTokenPasswordRepository;
@@ -38,6 +38,7 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final CanHoRepository canHoRepository;
     private final VerificationTokenAccountRepository verificationTokenAccountRepository;
     private final VerificationTokenPasswordRepository verificationTokenPasswordRepository;
     private final MailService mailService;
@@ -106,6 +107,8 @@ public class AuthService {
         String token = jwtProvider.generateJwtToken(authenticate);
         User user = userRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new SpringException("Tài khoản hoặc mật khẩu không đúng: " + loginRequest.getUsername()));
         RefreshToken refreshToken = refreshTokenService.generateRefreshToken(user);
+        Long idCanHo = null;
+        if (user.getRole().equals("User")) idCanHo = canHoRepository.getCanHoByIdTaiKhoan(user.getId()).getId();
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
                 .refreshToken(refreshToken.getToken())
@@ -113,6 +116,7 @@ public class AuthService {
                 .username(loginRequest.getUsername())
                 .role(user.getRole())
                 .image(user.getImage())
+                .idCanHo(idCanHo)
                 .build();
     }
 
@@ -134,7 +138,7 @@ public class AuthService {
         mailService.sendMail(new NotificationEmail("Xác nhận yêu cầu lấy lại mật khẩu",
                 user.getEmail(), "Vui lòng nhấp vào đường dẫn bên dưới để làm mới mật khẩu của bạn, " +
                 "Hạn sủ dụng 2 giờ: "
-                + appConfig.getAppUrl()  + "/auth/passwordVerification/" + token));
+                + appConfig.getAppUrl() + "/auth/passwordVerification/" + token));
     }
 
     private String generateVerificationTokenPassword(User user) {

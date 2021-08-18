@@ -1,6 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.UserDto;
+import com.nhom43.quanlychungcubackendgradle.service.CanHoService;
 import com.nhom43.quanlychungcubackendgradle.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,13 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RequestMapping("/api/user")
 @RestController
 public class UserController {
     private final UserService userService;
+    private final CanHoService canHoService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CanHoService canHoService) {
+        this.canHoService = canHoService;
         this.userService = userService;
     }
 
@@ -49,4 +56,15 @@ public class UserController {
         userService.update(userDto, id);
         return ResponseEntity.ok().build();
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+//    @GetMapping("/{id}/can-ho")
+//    public ResponseEntity<?> getCanHoByUser_Username(@PathVariable("id") String username) {
+//        CanHoDto canHo = canHoService.getCanHoByUser_Username(username);
+//        return ResponseEntity.ok(canHo);
+//    }
+
 }

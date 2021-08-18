@@ -1,4 +1,4 @@
-package com.nhom43.quanlychungcubackendgradle.share.server;
+package com.nhom43.quanlychungcubackendgradle.share.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

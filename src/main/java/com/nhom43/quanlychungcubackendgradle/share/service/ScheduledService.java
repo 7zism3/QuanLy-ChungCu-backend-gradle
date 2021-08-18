@@ -1,4 +1,4 @@
-package com.nhom43.quanlychungcubackendgradle.share.server;
+package com.nhom43.quanlychungcubackendgradle.share.service;
 
 import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonDichVu;
@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 

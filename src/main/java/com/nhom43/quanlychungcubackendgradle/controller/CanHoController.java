@@ -129,4 +129,5 @@ public class CanHoController {
         List<HoaDonSuaChuaDto> list = hoaDonSuaChuaService.findAllByCanHo_Id(id);
         return ResponseEntity.ok(list);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.nhom43.quanlychungcubackendgradle.share.server;
+package com.nhom43.quanlychungcubackendgradle.share.service;
 
 import com.nhom43.quanlychungcubackendgradle.entity.RefreshToken;
 import com.nhom43.quanlychungcubackendgradle.entity.User;

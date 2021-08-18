@@ -25,4 +25,6 @@ public class AuthenticationResponse {
 
     private  String image;
 
+    private Long idCanHo;
+
 }

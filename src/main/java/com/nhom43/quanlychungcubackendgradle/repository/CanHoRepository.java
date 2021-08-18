@@ -13,5 +13,5 @@ public interface CanHoRepository extends JpaRepository<CanHo, Long>, JpaSpecific
 
     List<CanHo> findAllByTrangThai(boolean b);
 
-
+    CanHo getCanHoByIdTaiKhoan(Long idTaiKhoan);
 }

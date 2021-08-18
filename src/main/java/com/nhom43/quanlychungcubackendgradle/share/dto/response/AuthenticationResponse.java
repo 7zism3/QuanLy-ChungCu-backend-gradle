@@ -27,4 +27,6 @@ public class AuthenticationResponse {
 
     private Long idCanHo;
 
+    private String email;
+
 }

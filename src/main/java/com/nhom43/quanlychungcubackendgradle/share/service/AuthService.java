@@ -66,9 +66,9 @@ public class AuthService {
         userRepository.save(user);
         String token = generateVerificationTokenAccount(user);
         mailService.sendMail(new NotificationEmail("Vui lòng kích hoạt tài khoản mới của bạn",
-                user.getEmail(), "Cảm ơn bạn đã đăng ký tại khoản tại website chúng tôi, " +
+                user.getEmail(),
                 "Vui lòng nhấp vào đường dẫn này để kích hoạt tài khoản bạn mới đăng ký, " +
-                "Hạn sử dụng trong vòng 2 giờ : "
+                "Hạn sử dụng trong vòng 6 giờ : "
                 + appConfig.getAppUrl() + "/accountVerification/"
                 + token));
     }
@@ -120,6 +120,7 @@ public class AuthService {
                 .role(user.getRole())
                 .image(user.getImage())
                 .idCanHo(idCanHo)
+                .email(user.getEmail())
                 .build();
     }
 

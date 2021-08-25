@@ -1,16 +1,11 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.ABCDto;
 import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.response.CountHoaDonResponse;
 import com.nhom43.quanlychungcubackendgradle.dto.response.DashboardResponse;
 import com.nhom43.quanlychungcubackendgradle.service.DashboardService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +23,32 @@ public class DashboardController {
         return ResponseEntity.ok(dashboardResponse);
     }
 
-    @GetMapping ("/admin/cu-dan-sinh-nhat-trong-thang")
+    @GetMapping("/admin/cu-dan-sinh-nhat-trong-thang")
     public ResponseEntity<?> findAllBySinhNhatThangNay() {
         List<CuDanDto> list = dashboardService.findAllBySinhNhatThangNay();
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/admin/gui-loi-chuc-mung-sinh-nhat/{id}")
+    public ResponseEntity<?> guiLoiChucMungSinhNhat(@PathVariable("id") int id) {
+        String kq = "đã gửi lời chúc mừng sinh nhật";
+        return ResponseEntity.ok(kq);
+    }
+
+    @GetMapping("/admin/thong-ke-hoa-don-dich-vu/nam={nam}&thang={thang}")
+    public ResponseEntity<?> thongKeHoaDonDichVu(@PathVariable("nam") int nam,
+                                                       @PathVariable("thang") int thang) {
+        CountHoaDonResponse countHoaDonResponse = dashboardService.thongKeHoaDonDichVu(nam, thang);
+        return ResponseEntity.ok(countHoaDonResponse);
+    }
+
+    @GetMapping("/admin/thong-ke-hoa-don-sua-chua/nam={nam}&thang={thang}")
+    public ResponseEntity<?> thongKeHoaDonSuaChua(@PathVariable("nam") int nam,
+                                                 @PathVariable("thang") int thang) {
+        CountHoaDonResponse countHoaDonResponse = dashboardService.thongKeHoaDonSuaChua(nam, thang);
+        return ResponseEntity.ok(countHoaDonResponse);
+    }
+
 //    @GetMapping("/user")
 //    public ResponseEntity<?> thongKeUser() {
 //        DashboardResponse dashboardResponse = dashboardService.thongKe();

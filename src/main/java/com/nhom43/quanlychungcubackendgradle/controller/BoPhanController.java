@@ -1,7 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
-import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.dto.NhanVienDto;
 import com.nhom43.quanlychungcubackendgradle.service.BoPhanService;
 import com.nhom43.quanlychungcubackendgradle.service.NhanVienService;

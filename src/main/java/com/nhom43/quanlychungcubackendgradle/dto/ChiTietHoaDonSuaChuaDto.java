@@ -14,7 +14,6 @@ public class ChiTietHoaDonSuaChuaDto extends AbstractDto<Long> {
     private Double donGia;
     private Integer soLuong;
     private String moTa;
-    private NhanVien nhanVien;
     private LoaiSuaChua LoaiSuaChua;
     private HoaDonSuaChua hoaDonSuaChua;
 

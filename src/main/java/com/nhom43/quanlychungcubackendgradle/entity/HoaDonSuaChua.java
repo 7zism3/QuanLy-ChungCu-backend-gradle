@@ -1,11 +1,11 @@
 
 package com.nhom43.quanlychungcubackendgradle.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -30,4 +30,9 @@ public class HoaDonSuaChua {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_can_ho", nullable = false)
     private CanHo canHo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_nhan_vien", nullable = false)
+    private NhanVien nhanVien;
+
 }

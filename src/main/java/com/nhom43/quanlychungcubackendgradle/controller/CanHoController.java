@@ -104,7 +104,6 @@ public class CanHoController {
         return ResponseEntity.ok(list);
     }
 
-
     @GetMapping("/{id}/hoa-don")
     public ResponseEntity<?> findAllHoaDonDichVuByCanHo_Id(@PathVariable("id") Long id) {
         List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByCanHo_Id(id);

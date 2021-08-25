@@ -47,4 +47,12 @@ public class ThongBaoService {
         BeanUtils.copyProperties(thongBaoDto, data);
         return save(data);
     }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    public List<ThongBaoDto> findAll() {
+        List<ThongBao> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thông báo nào");
+        return thongBaoMapper.toDto(list);
+    }
 }

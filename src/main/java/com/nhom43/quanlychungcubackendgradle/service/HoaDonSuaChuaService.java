@@ -1,8 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
-import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
-import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,6 +27,8 @@ public class HoaDonSuaChuaService {
 
     public HoaDonSuaChuaDto save(HoaDonSuaChuaDto hoaDonSuaChuaDto) {
         HoaDonSuaChua entity = hoaDonSuaChuaMapper.toEntity(hoaDonSuaChuaDto);
+        if (!repository.existsById(hoaDonSuaChuaDto.getId()))
+            entity.setNgayTao(LocalDateTime.now());
         return hoaDonSuaChuaMapper.toDto(repository.save(entity));
     }
 
@@ -80,7 +81,7 @@ public class HoaDonSuaChuaService {
     // ------------------------------------------------------------------------------------------------------------- //
 
     public List<HoaDonSuaChuaDto> findAllByTrangThaiTrongThang(boolean trangThai, String nam, String thang) {
-        if (thang.length() == 1) thang = "0"+ thang;
+        if (thang.length() == 1) thang = "0" + thang;
         List<HoaDonSuaChua> list = repository.findAllByTrangThaiAndNgayTao_YearAndNgayTao_Month(trangThai, nam, thang);
         if (list.isEmpty())
             throw new ResourceNotFoundException

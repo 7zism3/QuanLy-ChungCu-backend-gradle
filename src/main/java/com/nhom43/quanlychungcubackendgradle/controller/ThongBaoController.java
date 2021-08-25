@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RequestMapping("/api/thong-bao")
 @RestController
@@ -46,5 +48,13 @@ public class ThongBaoController {
     public ResponseEntity<Void> update(@RequestBody @Validated ThongBaoDto thongBaoDto, @PathVariable("id") Long id) {
         thongBaoService.update(thongBaoDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    @GetMapping("")
+    public ResponseEntity<List<ThongBaoDto>> findAll() {
+        List<ThongBaoDto> list = thongBaoService.findAll();
+        return ResponseEntity.ok(list);
     }
 }

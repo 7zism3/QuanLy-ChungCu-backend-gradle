@@ -20,10 +20,6 @@ public class ChiTietHoaDonSuaChua {
     private String moTa;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_nhan_vien", nullable = false)
-    private NhanVien nhanVien;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_loai_sua_chua", nullable = false)
     private LoaiSuaChua LoaiSuaChua;
 

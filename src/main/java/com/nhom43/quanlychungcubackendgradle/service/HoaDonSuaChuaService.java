@@ -27,8 +27,10 @@ public class HoaDonSuaChuaService {
 
     public HoaDonSuaChuaDto save(HoaDonSuaChuaDto hoaDonSuaChuaDto) {
         HoaDonSuaChua entity = hoaDonSuaChuaMapper.toEntity(hoaDonSuaChuaDto);
-        if (hoaDonSuaChuaDto.getId() != null)
-        if (!repository.existsById(hoaDonSuaChuaDto.getId()))
+        if (hoaDonSuaChuaDto.getId() != null) {
+            if (!repository.existsById(hoaDonSuaChuaDto.getId()))
+                entity.setNgayTao(LocalDateTime.now());
+        } else
             entity.setNgayTao(LocalDateTime.now());
         return hoaDonSuaChuaMapper.toDto(repository.save(entity));
     }

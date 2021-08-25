@@ -24,6 +24,7 @@ public class CanHoController {
     private final CuDanService cuDanService;
     private final HoaDonDichVuService hoaDonDichVuService;
     private final HoaDonSuaChuaService hoaDonSuaChuaService;
+    private final ThongBaoRiengService thongBaoRiengService;
 
     @PostMapping
     public ResponseEntity<CanHoDto> save(@RequestBody @Validated CanHoDto canHoDto) {
@@ -113,6 +114,12 @@ public class CanHoController {
     @GetMapping("/{id}/hoa-don-sua-chua")
     public ResponseEntity<?> findAllHoaDonSuaChuaByCanHo_Id(@PathVariable("id") Long id) {
         List<HoaDonSuaChuaDto> list = hoaDonSuaChuaService.findAllByCanHo_Id(id);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}/thong-bao-rieng")
+    public ResponseEntity<?> findAllThongByCanHo_Id(@PathVariable("id") Long id) {
+        List<ThongBaoRiengDto> list = thongBaoRiengService.findAllByCanHo_Id(id);
         return ResponseEntity.ok(list);
     }
 

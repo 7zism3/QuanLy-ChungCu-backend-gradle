@@ -17,6 +17,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 @AllArgsConstructor
@@ -88,5 +90,12 @@ public class HoaDonDichVuService {
 
     // ------------------------------------------------------------------------------------------------------------- //
 
-
+    public List<HoaDonDichVuDto> findAllByTrangThaiTrongThang(boolean trangThai, String nam, String thang) {
+        if (thang.length() == 1) thang = "0"+ thang;
+        List<HoaDonDichVu> list = repository.findAllByTrangThaiAndNgayTao_YearAndNgayTao_Month(trangThai, nam, thang);
+        if (list.isEmpty())
+            throw new ResourceNotFoundException
+                    ("Chưa tồn tại hóa đơn nào trong thang " + thang + "/" + nam);
+        return hoaDonDichVuMapper.toDto(list);
+    }
 }

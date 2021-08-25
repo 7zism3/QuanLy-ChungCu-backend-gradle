@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonSuaChuaService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonSuaChuaService;
@@ -76,6 +77,24 @@ public class HoaDonSuaChuaController {
     @GetMapping("/{id}/chi-tiet-hoa-don-dich-vu")
     public ResponseEntity<?> findAllCCHHDVByHoaDonDichVu_CanHo_Id(@PathVariable("id") Long id) {
         List<ChiTietHoaDonSuaChuaDto> list = chiTietHoaDonSuaChuaService.findByHoaDonSuaChua_Id(id);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/da-thanh-toan/nam={nam}&thang={thang}")
+    public ResponseEntity<List<HoaDonSuaChuaDto>> findAllByDaThanhToanTrongThang
+            (@PathVariable("nam") String nam,
+             @PathVariable("thang") String thang) {
+        List<HoaDonSuaChuaDto> list = hoaDonSuaChuaService.findAllByTrangThaiTrongThang
+                (true, nam, thang);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/chua-thanh-toan/nam={nam}&thang={thang}")
+    public ResponseEntity<List<HoaDonSuaChuaDto>> findAllByChuaThanhToanTrongThang
+            (@PathVariable("nam") String nam,
+             @PathVariable("thang") String thang) {
+        List<HoaDonSuaChuaDto> list = hoaDonSuaChuaService.findAllByTrangThaiTrongThang
+                (false, nam, thang);
         return ResponseEntity.ok(list);
     }
 }

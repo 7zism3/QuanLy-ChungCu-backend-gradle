@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 @AllArgsConstructor
@@ -84,5 +86,23 @@ public class HoaDonDichVuController {
     public ResponseEntity<Void> thanhToan(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto, @PathVariable("id") Long id) {
         hoaDonDichVuService.thanhToanTienMat(hoaDonDichVuDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/da-thanh-toan/nam={nam}&thang={thang}")
+    public ResponseEntity<List<HoaDonDichVuDto>> findAllByDaThanhToanTrongThang
+            (@PathVariable("nam") String nam,
+             @PathVariable("thang") String thang) {
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByTrangThaiTrongThang
+                (true, nam, thang);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/chua-thanh-toan/nam={nam}&thang={thang}")
+    public ResponseEntity<List<HoaDonDichVuDto>> findAllByChuaThanhToanTrongThang
+            (@PathVariable("nam") String nam,
+             @PathVariable("thang") String thang) {
+        List<HoaDonDichVuDto> list = hoaDonDichVuService.findAllByTrangThaiTrongThang
+                (false, nam, thang);
+        return ResponseEntity.ok(list);
     }
 }

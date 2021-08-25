@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.repository;
 
+import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -25,4 +26,11 @@ public interface HoaDonSuaChuaRepository extends JpaRepository<HoaDonSuaChua, Lo
             " and (?2 = SUBSTRING(u.ngayTao, 1, 4))" +
             " and (?3 = SUBSTRING(u.ngayTao, 6, 2))")
     Integer countHoaDonSuaChuaByTrangThaiAndNgayTao(Boolean trangThai, String nam, String thang);
+
+    @Query("SELECT u FROM HoaDonSuaChua u WHERE " +
+            "(u.trangThai = ?1) " +
+            " and (?2 = SUBSTRING(u.ngayTao, 1, 4))" +
+            " and (?3 = SUBSTRING(u.ngayTao, 6, 2))")
+    List<HoaDonSuaChua> findAllByTrangThaiAndNgayTao_YearAndNgayTao_Month (Boolean trangThai, String nam, String thang);
+
 }

@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
@@ -56,13 +58,13 @@ public class HoaDonSuaChuaService {
 
     public List<HoaDonSuaChuaDto> findAll() {
         List<HoaDonSuaChua> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
-        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn sửa chữa nào");
         return hoaDonSuaChuaMapper.toDto(list);
     }
 
     public List<HoaDonSuaChuaDto> findAllByTrangThai(boolean trangThai) {
         List<HoaDonSuaChua> list = repository.findAllByOrderByTrangThaiAscNgayTaoDesc();
-        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn nào");
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại hóa đơn sửa chữa nào");
         return hoaDonSuaChuaMapper.toDto(list);
     }
 
@@ -75,5 +77,14 @@ public class HoaDonSuaChuaService {
         return hoaDonSuaChuaMapper.toDto(list);
     }
 
+    // ------------------------------------------------------------------------------------------------------------- //
 
+    public List<HoaDonSuaChuaDto> findAllByTrangThaiTrongThang(boolean trangThai, String nam, String thang) {
+        if (thang.length() == 1) thang = "0"+ thang;
+        List<HoaDonSuaChua> list = repository.findAllByTrangThaiAndNgayTao_YearAndNgayTao_Month(trangThai, nam, thang);
+        if (list.isEmpty())
+            throw new ResourceNotFoundException
+                    ("Chưa tồn tại hóa đơn nào trong thang " + thang + "/" + nam);
+        return hoaDonSuaChuaMapper.toDto(list);
+    }
 }

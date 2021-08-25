@@ -12,6 +12,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,6 +28,16 @@ public class ThongBaoRiengService {
 
     public ThongBaoRiengDto save(ThongBaoRiengDto thongBaoRiengDto) {
         ThongBaoRieng entity = thongBaoRiengMapper.toEntity(thongBaoRiengDto);
+        if (thongBaoRiengDto.getId() != null) {
+            if (!repository.existsById(thongBaoRiengDto.getId()))
+                entity.setNgayTao(LocalDateTime.now());
+        } else
+            entity.setNgayTao(LocalDateTime.now());
+        String tmp = thongBaoRiengDto.getNoiDung();
+        if (tmp.substring(0, 3).equals("<p>"))
+            thongBaoRiengDto.setNoiDung(tmp.substring(3));
+        if (tmp.substring(tmp.length() - 3, 3).equals("<p>"))
+            thongBaoRiengDto.setNoiDung(tmp.substring(0, tmp.length()));
         return thongBaoRiengMapper.toDto(repository.save(entity));
     }
 

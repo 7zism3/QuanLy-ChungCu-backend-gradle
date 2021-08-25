@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/thong-bao-rieng")
+@RequestMapping("/api/thong-bao-rieng")
 @RestController
 public class ThongBaoRiengController {
     private final ThongBaoRiengService thongBaoRiengService;

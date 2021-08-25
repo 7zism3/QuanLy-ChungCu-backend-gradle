@@ -36,4 +36,13 @@ public interface CuDanRepository extends JpaRepository<CuDan, Long>, JpaSpecific
     @Query("SELECT COUNT (u) FROM CuDan u WHERE " +
             "(SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) >= 60)")
     Integer countCuDanByNgaySinh60();
+
+    @Query("SELECT COUNT (u) FROM CuDan u WHERE " +
+            "(SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) <= 18) " +
+            " and (SUBSTRING(CURRENT_DATE(), 6, 2) = SUBSTRING(u.ngaySinh, 6, 2))")
+    Integer countCuDanByTuoiNhoHon18_CoSinhNhatTrongThang();
+
+    @Query("SELECT u FROM CuDan u WHERE " +
+            "(SUBSTRING(CURRENT_DATE(), 6, 2) = SUBSTRING(u.ngaySinh, 6, 2))")
+    List<CuDan> findAllBySinhNhatThangNay();
 }

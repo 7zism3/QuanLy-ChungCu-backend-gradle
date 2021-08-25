@@ -15,6 +15,9 @@ public class DashboardResponse {
 
     private int soDanCuTuoiNhoHon18_CoSinhNhatTrongThang;
 
-    private int soHoaDonDaThanhToan;
-    private int soHoaDonChuaThanhToan;
+    private int soHoaDonThangTruocDaThanhToan;
+    private int soHoaDonThangTruocChuaThanhToan;
+
+    private int soHoaDonSuaChuaThangTruocDaThanhToan;
+    private int soHoaDonSuaChuaThangTruocChuaThanhToan;
 }

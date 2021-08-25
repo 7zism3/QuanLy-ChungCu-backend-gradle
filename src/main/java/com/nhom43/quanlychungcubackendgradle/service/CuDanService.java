@@ -76,7 +76,6 @@ public class CuDanService {
         List<CuDan> cuDanList = repository.findAllByDaXoa(daXoa);
         if (cuDanList.isEmpty()) throw new ResourceNotFoundException("Không có cư dân nào Trạng thái \"ĐÃ XÓA\" : " + daXoa);
         return cuDanMapper.toDto(cuDanList);
-
     }
 
 }

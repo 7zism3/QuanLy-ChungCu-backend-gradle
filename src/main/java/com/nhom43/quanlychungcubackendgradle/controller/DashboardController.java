@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ABCDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.response.DashboardResponse;
 import com.nhom43.quanlychungcubackendgradle.service.DashboardService;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RequestMapping("/api/dashboard")
@@ -25,6 +28,11 @@ public class DashboardController {
         return ResponseEntity.ok(dashboardResponse);
     }
 
+    @GetMapping ("/admin/cu-dan-sinh-nhat-trong-thang")
+    public ResponseEntity<?> findAllBySinhNhatThangNay() {
+        List<CuDanDto> list = dashboardService.findAllBySinhNhatThangNay();
+        return ResponseEntity.ok(list);
+    }
 //    @GetMapping("/user")
 //    public ResponseEntity<?> thongKeUser() {
 //        DashboardResponse dashboardResponse = dashboardService.thongKe();

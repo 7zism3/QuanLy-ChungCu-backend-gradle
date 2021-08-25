@@ -56,7 +56,8 @@ public class DashboardService {
         return cuDanMapper.toDto(cuDanList);
     }
 
-    public CountHoaDonResponse thongKeHoaDonDichVu(int nam, int thang) {
+    public CountHoaDonResponse thongKeHoaDonDichVu(String nam, String thang) {
+        if (thang.length() == 1) thang = "0" + thang;
         CountHoaDonResponse countHoaDonResponse = new CountHoaDonResponse();
         countHoaDonResponse.setSoHoaDonChuaThanhToan
                 (hoaDonDichVuRepository.countHoaDonDichVuByTrangThaiAndNgayTao(false, nam, thang));
@@ -65,7 +66,8 @@ public class DashboardService {
         return countHoaDonResponse;
     }
 
-    public CountHoaDonResponse thongKeHoaDonSuaChua(int nam, int thang) {
+    public CountHoaDonResponse thongKeHoaDonSuaChua(String nam, String thang) {
+        if (thang.length() == 1) thang = "0" + thang;
         CountHoaDonResponse countHoaDonResponse = new CountHoaDonResponse();
         countHoaDonResponse.setSoHoaDonChuaThanhToan
                 (hoaDonSuaChuaRepository.countHoaDonSuaChuaByTrangThaiAndNgayTao(false, nam, thang));

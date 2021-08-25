@@ -27,5 +27,5 @@ public interface HoaDonDichVuRepository extends JpaRepository<HoaDonDichVu, Long
             "(u.trangThai = ?1) " +
             " and (?2 = SUBSTRING(u.ngayTao, 1, 4))" +
             " and (?3 = SUBSTRING(u.ngayTao, 6, 2))")
-    Integer countHoaDonDichVuByTrangThaiAndNgayTao(Boolean trangThai, int nam, int thang);
+    Integer countHoaDonDichVuByTrangThaiAndNgayTao(Boolean trangThai, String nam, String thang);
 }

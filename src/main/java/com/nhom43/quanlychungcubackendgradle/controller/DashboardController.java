@@ -36,15 +36,15 @@ public class DashboardController {
     }
 
     @GetMapping("/admin/thong-ke-hoa-don-dich-vu/nam={nam}&thang={thang}")
-    public ResponseEntity<?> thongKeHoaDonDichVu(@PathVariable("nam") int nam,
-                                                       @PathVariable("thang") int thang) {
+    public ResponseEntity<?> thongKeHoaDonDichVu(@PathVariable("nam") String nam,
+                                                       @PathVariable("thang") String thang) {
         CountHoaDonResponse countHoaDonResponse = dashboardService.thongKeHoaDonDichVu(nam, thang);
         return ResponseEntity.ok(countHoaDonResponse);
     }
 
     @GetMapping("/admin/thong-ke-hoa-don-sua-chua/nam={nam}&thang={thang}")
-    public ResponseEntity<?> thongKeHoaDonSuaChua(@PathVariable("nam") int nam,
-                                                 @PathVariable("thang") int thang) {
+    public ResponseEntity<?> thongKeHoaDonSuaChua(@PathVariable("nam") String nam,
+                                                 @PathVariable("thang") String thang) {
         CountHoaDonResponse countHoaDonResponse = dashboardService.thongKeHoaDonSuaChua(nam, thang);
         return ResponseEntity.ok(countHoaDonResponse);
     }

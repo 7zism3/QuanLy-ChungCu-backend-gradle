@@ -1,10 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
-import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
-import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.dto.UserDto;
 import com.nhom43.quanlychungcubackendgradle.service.CanHoService;
 import com.nhom43.quanlychungcubackendgradle.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,19 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-
+@AllArgsConstructor
 @RequestMapping("/api/user")
 @RestController
 public class UserController {
-    private final UserService userService;
-    private final CanHoService canHoService;
 
-    public UserController(UserService userService, CanHoService canHoService) {
-        this.canHoService = canHoService;
-        this.userService = userService;
-    }
+    private final UserService userService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated UserDto userDto) {

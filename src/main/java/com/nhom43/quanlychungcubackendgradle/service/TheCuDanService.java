@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.TheCuDanDto;
 import com.nhom43.quanlychungcubackendgradle.entity.TheCuDan;
 import com.nhom43.quanlychungcubackendgradle.mapper.TheCuDanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.TheCuDanRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,16 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class TheCuDanService {
     private final TheCuDanRepository repository;
     private final TheCuDanMapper theCuDanMapper;
-
-    public TheCuDanService(TheCuDanRepository repository, TheCuDanMapper theCuDanMapper) {
-        this.repository = repository;
-        this.theCuDanMapper = theCuDanMapper;
-    }
 
     public TheCuDanDto save(TheCuDanDto theCuDanDto) {
         TheCuDan entity = theCuDanMapper.toEntity(theCuDanDto);

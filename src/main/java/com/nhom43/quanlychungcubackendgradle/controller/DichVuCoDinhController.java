@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
 import com.nhom43.quanlychungcubackendgradle.service.DichVuCoDinhService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/dich-vu-co-dinh")
 @RestController
 public class DichVuCoDinhController {
-    private final DichVuCoDinhService dichVuCoDinhService;
 
-    public DichVuCoDinhController(DichVuCoDinhService dichVuCoDinhService) {
-        this.dichVuCoDinhService = dichVuCoDinhService;
-    }
+    private final DichVuCoDinhService dichVuCoDinhService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated DichVuCoDinhDto dichVuCoDinhDto) {

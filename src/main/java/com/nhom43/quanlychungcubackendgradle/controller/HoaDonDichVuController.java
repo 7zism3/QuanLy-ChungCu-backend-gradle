@@ -5,6 +5,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.request.HoaDonDichVuRequest;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonDichVuService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonDichVuService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,16 +16,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/hoa-don-dich-vu")
 @RestController
 public class HoaDonDichVuController {
+
     private final HoaDonDichVuService hoaDonDichVuService;
     private final ChiTietHoaDonDichVuService chiTietHoaDonDichVuService;
-
-    public HoaDonDichVuController(HoaDonDichVuService hoaDonDichVuService, ChiTietHoaDonDichVuService chiTietHoaDonDichVuService) {
-        this.hoaDonDichVuService = hoaDonDichVuService;
-        this.chiTietHoaDonDichVuService = chiTietHoaDonDichVuService;
-    }
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated HoaDonDichVuDto hoaDonDichVuDto) {

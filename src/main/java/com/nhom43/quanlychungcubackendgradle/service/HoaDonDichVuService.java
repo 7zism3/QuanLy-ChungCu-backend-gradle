@@ -5,6 +5,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.request.HoaDonDichVuRequest;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonDichVuRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,16 +19,12 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class HoaDonDichVuService {
     private final HoaDonDichVuRepository repository;
     private final HoaDonDichVuMapper hoaDonDichVuMapper;
-
-    public HoaDonDichVuService(HoaDonDichVuRepository repository, HoaDonDichVuMapper hoaDonDichVuMapper) {
-        this.repository = repository;
-        this.hoaDonDichVuMapper = hoaDonDichVuMapper;
-    }
 
     public HoaDonDichVuDto save(HoaDonDichVuDto hoaDonDichVuDto) {
         HoaDonDichVu entity = hoaDonDichVuMapper.toEntity(hoaDonDichVuDto);

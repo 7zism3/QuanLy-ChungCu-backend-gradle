@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.service.PhuongTienService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/phuong-tien")
 @RestController
 public class PhuongTienController {
-    private final PhuongTienService phuongTienService;
 
-    public PhuongTienController(PhuongTienService phuongTienService) {
-        this.phuongTienService = phuongTienService;
-    }
+    private final PhuongTienService phuongTienService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated PhuongTienDto phuongTienDto) {

@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,16 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class HoaDonSuaChuaService {
     private final HoaDonSuaChuaRepository repository;
     private final HoaDonSuaChuaMapper hoaDonSuaChuaMapper;
-
-    public HoaDonSuaChuaService(HoaDonSuaChuaRepository repository, HoaDonSuaChuaMapper hoaDonSuaChuaMapper) {
-        this.repository = repository;
-        this.hoaDonSuaChuaMapper = hoaDonSuaChuaMapper;
-    }
 
     public HoaDonSuaChuaDto save(HoaDonSuaChuaDto hoaDonSuaChuaDto) {
         HoaDonSuaChua entity = hoaDonSuaChuaMapper.toEntity(hoaDonSuaChuaDto);

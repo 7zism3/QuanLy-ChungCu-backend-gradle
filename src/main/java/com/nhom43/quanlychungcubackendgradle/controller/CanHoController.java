@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.*;
 import com.nhom43.quanlychungcubackendgradle.service.*;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,31 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@AllArgsConstructor
 @RequestMapping("/api/can-ho")
 @RestController
 public class CanHoController {
+
     private final CanHoService canHoService;
     private final PhuongTienService phuongTienService;
     private final TheCuDanService theCuDanService;
     private final CuDanService cuDanService;
     private final HoaDonDichVuService hoaDonDichVuService;
     private final HoaDonSuaChuaService hoaDonSuaChuaService;
-
-    public CanHoController(CanHoService canHoService
-            , PhuongTienService phuongTienService
-            , TheCuDanService theCuDanService
-            , CuDanService cuDanService
-            , HoaDonDichVuService hoaDonDichVuService
-            , HoaDonSuaChuaService hoaDonSuaChuaService
-    ) {
-        this.canHoService = canHoService;
-        this.phuongTienService = phuongTienService;
-        this.theCuDanService = theCuDanService;
-        this.cuDanService = cuDanService;
-        this.hoaDonDichVuService = hoaDonDichVuService;
-        this.hoaDonSuaChuaService =hoaDonSuaChuaService;
-    }
 
     @PostMapping
     public ResponseEntity<CanHoDto> save(@RequestBody @Validated CanHoDto canHoDto) {

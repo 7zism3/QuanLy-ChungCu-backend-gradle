@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.RefreshTokenDto;
 import com.nhom43.quanlychungcubackendgradle.entity.RefreshToken;
 import com.nhom43.quanlychungcubackendgradle.mapper.RefreshTokenMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.RefreshTokenRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,16 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class RefreshTokenService2 {
     private final RefreshTokenRepository repository;
     private final RefreshTokenMapper refreshTokenMapper;
-
-    public RefreshTokenService2 ( RefreshTokenRepository repository, RefreshTokenMapper refreshTokenMapper) {
-        this.repository = repository;
-        this.refreshTokenMapper = refreshTokenMapper;
-    }
 
     public RefreshTokenDto save(RefreshTokenDto refreshTokenDto) {
         RefreshToken entity = refreshTokenMapper.toEntity(refreshTokenDto);

@@ -31,7 +31,7 @@ class MailService {
         };
         try {
             mailSender.send(messagePreparator);
-            log.info("Đã gửi email kích hoạt!");
+            log.info("Đã gửi email!");
         } catch (MailException e) {
             throw new SpringException("Đã xảy ra ngoại lệ khi gửi thư đến " + notificationEmail.getRecipient()
                     + ". Nếu bạn dùng gmail. Hãy kiểm tra Cài đặt bảo mật tài khoản và bật cho phép ứng dụng không tin tưởng!");

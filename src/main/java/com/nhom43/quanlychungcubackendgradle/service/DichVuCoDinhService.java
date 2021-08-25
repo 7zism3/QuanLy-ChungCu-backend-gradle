@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.DichVuCoDinhDto;
 import com.nhom43.quanlychungcubackendgradle.entity.DichVuCoDinh;
 import com.nhom43.quanlychungcubackendgradle.mapper.DichVuCoDinhMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.DichVuCoDinhRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,16 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class DichVuCoDinhService {
     private final DichVuCoDinhRepository repository;
     private final DichVuCoDinhMapper dichVuCoDinhMapper;
-
-    public DichVuCoDinhService(DichVuCoDinhRepository repository, DichVuCoDinhMapper dichVuCoDinhMapper) {
-        this.repository = repository;
-        this.dichVuCoDinhMapper = dichVuCoDinhMapper;
-    }
 
     public DichVuCoDinhDto save(DichVuCoDinhDto dichVuCoDinhDto) {
         DichVuCoDinh entity = dichVuCoDinhMapper.toEntity(dichVuCoDinhDto);

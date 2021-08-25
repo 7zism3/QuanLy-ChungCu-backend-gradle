@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.NhanVienDto;
 import com.nhom43.quanlychungcubackendgradle.service.NhanVienService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,16 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@AllArgsConstructor
 @RequestMapping("/api/nhan-vien")
 @RestController
 public class NhanVienController {
+
     private final NhanVienService nhanVienService;
 
-    public NhanVienController(NhanVienService nhanVienService) {
-        this.nhanVienService = nhanVienService;
-    }
-
-    @PostMapping
+   @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated NhanVienDto nhanVienDto) {
         nhanVienService.save(nhanVienDto);
         return ResponseEntity.ok().build();

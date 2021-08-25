@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.service.LoaiSuaChuaService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/loai-sua-chua")
 @RestController
 public class LoaiSuaChuaController {
-    private final LoaiSuaChuaService loaiSuaChuaService;
 
-    public LoaiSuaChuaController(LoaiSuaChuaService loaiSuaChuaService) {
-        this.loaiSuaChuaService = loaiSuaChuaService;
-    }
+    private final LoaiSuaChuaService loaiSuaChuaService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated LoaiSuaChuaDto loaiSuaChuaDto) {

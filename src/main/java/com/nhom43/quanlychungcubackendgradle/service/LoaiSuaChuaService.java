@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.entity.LoaiSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.LoaiSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.LoaiSuaChuaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,16 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class LoaiSuaChuaService {
     private final LoaiSuaChuaRepository repository;
     private final LoaiSuaChuaMapper loaiSuaChuaMapper;
-
-    public LoaiSuaChuaService(LoaiSuaChuaRepository repository, LoaiSuaChuaMapper loaiSuaChuaMapper) {
-        this.repository = repository;
-        this.loaiSuaChuaMapper = loaiSuaChuaMapper;
-    }
 
     public LoaiSuaChuaDto save(LoaiSuaChuaDto loaiSuaChuaDto) {
         LoaiSuaChua entity = loaiSuaChuaMapper.toEntity(loaiSuaChuaDto);

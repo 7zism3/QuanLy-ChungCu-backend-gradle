@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
 import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
 import com.nhom43.quanlychungcubackendgradle.mapper.BoPhanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.BoPhanRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -15,16 +16,12 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class BoPhanService {
     private final BoPhanRepository repository;
     private final BoPhanMapper boPhanMapper;
-
-    public BoPhanService(BoPhanRepository repository, BoPhanMapper boPhanMapper) {
-        this.repository = repository;
-        this.boPhanMapper = boPhanMapper;
-    }
 
     public BoPhanDto save(BoPhanDto boPhanDto) {
         BoPhan entity = boPhanMapper.toEntity(boPhanDto);

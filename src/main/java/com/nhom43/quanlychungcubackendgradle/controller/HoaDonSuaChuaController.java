@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonSuaChuaService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonSuaChuaService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,17 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/hoa-don-sua-chua")
 @RestController
 public class HoaDonSuaChuaController {
+
     private final HoaDonSuaChuaService hoaDonSuaChuaService;
     private final ChiTietHoaDonSuaChuaService chiTietHoaDonSuaChuaService;
-
-    public HoaDonSuaChuaController(HoaDonSuaChuaService hoaDonSuaChuaService,
-                                   ChiTietHoaDonSuaChuaService chiTietHoaDonSuaChuaService) {
-        this.hoaDonSuaChuaService = hoaDonSuaChuaService;
-        this.chiTietHoaDonSuaChuaService = chiTietHoaDonSuaChuaService;
-    }
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated HoaDonSuaChuaDto hoaDonSuaChuaDto) {

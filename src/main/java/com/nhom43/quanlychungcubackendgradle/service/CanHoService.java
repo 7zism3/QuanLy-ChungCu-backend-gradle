@@ -7,6 +7,7 @@ import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.CuDanRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,6 +20,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class CanHoService {
@@ -26,16 +28,6 @@ public class CanHoService {
     private final CuDanRepository cuDanRepository;
     private final CanHoMapper canHoMapper;
     private final UserRepository userRepository;
-
-    public CanHoService(CanHoRepository repository
-            , CanHoMapper canHoMapper
-            , CuDanRepository cuDanRepository
-            , UserRepository userRepository) {
-        this.repository = repository;
-        this.canHoMapper = canHoMapper;
-        this.cuDanRepository = cuDanRepository;
-        this.userRepository = userRepository;
-    }
 
     public CanHoDto save(CanHoDto canHoDto) {
         CanHo entity = canHoMapper.toEntity(canHoDto);

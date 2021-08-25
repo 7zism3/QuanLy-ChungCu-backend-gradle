@@ -142,7 +142,7 @@ public class AuthService {
         String token = generateVerificationTokenPassword(user);
         mailService.sendMail(new NotificationEmail("Xác nhận yêu cầu lấy lại mật khẩu",
                 user.getEmail(), "Vui lòng nhấp vào đường dẫn bên dưới để làm mới mật khẩu của bạn, " +
-                "Hạn sủ dụng 2 giờ: "
+                "Hạn sủ dụng 6 giờ: "
                 + appConfig.getAppUrl() + "/auth/passwordVerification/" + token));
     }
 

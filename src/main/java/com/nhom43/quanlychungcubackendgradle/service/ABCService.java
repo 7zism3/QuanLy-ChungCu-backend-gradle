@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.ABCDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ABC;
 import com.nhom43.quanlychungcubackendgradle.mapper.ABCMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ABCRepository;
+import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -16,16 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class ABCService {
     private final ABCRepository repository;
     private final ABCMapper aBCMapper;
-
-    public ABCService(ABCRepository repository, ABCMapper aBCMapper) {
-        this.repository = repository;
-        this.aBCMapper = aBCMapper;
-    }
 
     public ABCDto save(ABCDto aBCDto) {
         ABC entity = aBCMapper.toEntity(aBCDto);

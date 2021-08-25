@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.RefreshTokenDto;
 import com.nhom43.quanlychungcubackendgradle.service.RefreshTokenService2;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,15 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
+@AllArgsConstructor
 @RequestMapping("/api/refresh-token")
 @RestController
 public class RefreshTokenController {
-    private final RefreshTokenService2 refreshTokenService;
 
-    public RefreshTokenController(RefreshTokenService2 refreshTokenService) {
-        this.refreshTokenService = refreshTokenService;
-    }
+    private final RefreshTokenService2 refreshTokenService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated RefreshTokenDto refreshTokenDto) {

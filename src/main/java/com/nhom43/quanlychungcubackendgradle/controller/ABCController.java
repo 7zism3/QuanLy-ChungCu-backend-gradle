@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.ABCDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ABC;
 import com.nhom43.quanlychungcubackendgradle.mapper.ABCMapper;
 import com.nhom43.quanlychungcubackendgradle.service.ABCService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,14 +18,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @RequestMapping("/aBC")
 @RestController
 public class ABCController {
-    private final ABCService aBCService;
 
-    public ABCController(ABCService aBCService) {
-        this.aBCService = aBCService;
-    }
+    private final ABCService aBCService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated ABCDto aBCDto) {

@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.service.CuDanService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RequestMapping("/api/cu-dan")
 @RestController
 public class CuDanController {
-    private final CuDanService cuDanService;
 
-    public CuDanController(CuDanService cuDanService) {
-        this.cuDanService = cuDanService;
-    }
+    private final CuDanService cuDanService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated CuDanDto cuDanDto) {

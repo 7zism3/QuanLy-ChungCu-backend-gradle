@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ChiTietHoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.ChiTietHoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ChiTietHoaDonSuaChuaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,16 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class ChiTietHoaDonSuaChuaService {
     private final ChiTietHoaDonSuaChuaRepository repository;
     private final ChiTietHoaDonSuaChuaMapper chiTietHoaDonSuaChuaMapper;
-
-    public ChiTietHoaDonSuaChuaService(ChiTietHoaDonSuaChuaRepository repository, ChiTietHoaDonSuaChuaMapper chiTietHoaDonSuaChuaMapper) {
-        this.repository = repository;
-        this.chiTietHoaDonSuaChuaMapper = chiTietHoaDonSuaChuaMapper;
-    }
 
     public ChiTietHoaDonSuaChuaDto save(ChiTietHoaDonSuaChuaDto chiTietHoaDonSuaChuaDto) {
         ChiTietHoaDonSuaChua entity = chiTietHoaDonSuaChuaMapper.toEntity(chiTietHoaDonSuaChuaDto);

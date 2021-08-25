@@ -15,12 +15,25 @@ public interface CuDanRepository extends JpaRepository<CuDan, Long>, JpaSpecific
 
     List<CuDan> findByCanHo_Id(Long id);
 
-    CuDan findByCanHoAndChuCanHo (CanHo canHo, boolean chuCanHo);
+    CuDan findByCanHoAndChuCanHo(CanHo canHo, boolean chuCanHo);
 
-    Long countByCanHoAndDaXoa (CanHo canHo, boolean trangThai);
+    Long countByCanHoAndDaXoa(CanHo canHo, boolean trangThai);
 
 //    @Query(value = "SELECT u FROM CuDan u WHERE u.CuDan.CanHo = ?1 and u.status = 'Processing' or u.house.homeStay = ?1 and u.status = 'Refunded' or u.house.homeStay = ?1 and u.status = 'Cancel' ")
 //    List<CuDan> findAllByCanHo_Id2(Long id);
 
     List<CuDan> findAllByDaXoa(Boolean daXoa);
+
+    @Query("SELECT COUNT (u) FROM CuDan u WHERE " +
+            "(SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) < 60) " +
+            " and (SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) > 18)")
+    Integer countCuDanByNgaySinh1860();
+
+    @Query("SELECT COUNT (u) FROM CuDan u WHERE " +
+            "(SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) <= 18)")
+    Integer countCuDanByNgaySinh18();
+
+    @Query("SELECT COUNT (u) FROM CuDan u WHERE " +
+            "(SUBSTRING(CURRENT_DATE(), 1, 4) - SUBSTRING(u.ngaySinh, 1, 4) >= 60)")
+    Integer countCuDanByNgaySinh60();
 }

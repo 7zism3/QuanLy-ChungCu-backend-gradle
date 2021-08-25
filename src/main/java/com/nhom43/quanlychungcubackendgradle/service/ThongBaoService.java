@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.ThongBaoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.ThongBao;
 import com.nhom43.quanlychungcubackendgradle.mapper.ThongBaoMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.ThongBaoRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,16 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class ThongBaoService {
     private final ThongBaoRepository repository;
     private final ThongBaoMapper thongBaoMapper;
-
-    public ThongBaoService(ThongBaoRepository repository, ThongBaoMapper thongBaoMapper) {
-        this.repository = repository;
-        this.thongBaoMapper = thongBaoMapper;
-    }
 
     public ThongBaoDto save(ThongBaoDto thongBaoDto) {
         ThongBao entity = thongBaoMapper.toEntity(thongBaoDto);

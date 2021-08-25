@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.UserDto;
 import com.nhom43.quanlychungcubackendgradle.entity.User;
 import com.nhom43.quanlychungcubackendgradle.mapper.UserMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -14,16 +15,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Transactional
 public class UserService {
     private final UserRepository repository;
     private final UserMapper userMapper;
-
-    public UserService(UserRepository repository, UserMapper userMapper) {
-        this.repository = repository;
-        this.userMapper = userMapper;
-    }
 
     public UserDto save(UserDto userDto) {
         User entity = userMapper.toEntity(userDto);

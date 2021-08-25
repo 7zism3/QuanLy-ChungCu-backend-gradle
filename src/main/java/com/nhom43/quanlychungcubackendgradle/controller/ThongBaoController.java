@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ThongBaoDto;
 import com.nhom43.quanlychungcubackendgradle.service.ThongBaoService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,17 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
+@AllArgsConstructor
 @RequestMapping("/api/thong-bao")
 @RestController
 public class ThongBaoController {
+
     private final ThongBaoService thongBaoService;
 
-    public ThongBaoController(ThongBaoService thongBaoService) {
-        this.thongBaoService = thongBaoService;
-    }
-
-    @PostMapping
+  @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated ThongBaoDto thongBaoDto) {
         thongBaoService.save(thongBaoDto);
         return ResponseEntity.ok().build();

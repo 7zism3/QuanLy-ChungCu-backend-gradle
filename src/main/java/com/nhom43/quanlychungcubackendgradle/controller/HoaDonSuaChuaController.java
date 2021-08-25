@@ -1,7 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
-import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonSuaChuaService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonSuaChuaService;
@@ -75,7 +74,7 @@ public class HoaDonSuaChuaController {
     }
 
     @GetMapping("/{id}/chi-tiet-hoa-don-dich-vu")
-    public ResponseEntity<?> findAllCCHHDVByHoaDonDichVu_CanHo_Id(@PathVariable("id") Long id) {
+    public ResponseEntity<?> findAllByHoaDonSuaChua_Id(@PathVariable("id") Long id) {
         List<ChiTietHoaDonSuaChuaDto> list = chiTietHoaDonSuaChuaService.findByHoaDonSuaChua_Id(id);
         return ResponseEntity.ok(list);
     }

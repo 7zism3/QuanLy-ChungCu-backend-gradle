@@ -75,7 +75,7 @@ public class HoaDonDichVuController {
     }
 
     @GetMapping("/{id}/chi-tiet-hoa-don-dich-vu")
-    public ResponseEntity<?> findAllCCHHDVByHoaDonDichVu_CanHo_Id(@PathVariable("id") Long id) {
+    public ResponseEntity<?> findAllByHoaDonDichVu_Id(@PathVariable("id") Long id) {
         List<ChiTietHoaDonDichVuDto> list = chiTietHoaDonDichVuService.findAllByHoaDonDichVu_Id(id);
         return ResponseEntity.ok(list);
     }

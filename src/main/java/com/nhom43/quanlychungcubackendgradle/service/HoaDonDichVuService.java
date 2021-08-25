@@ -17,8 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.Year;
 import java.util.List;
 
 @AllArgsConstructor
@@ -81,12 +79,12 @@ public class HoaDonDichVuService {
         return hoaDonDichVuMapper.toDto(list);
     }
 
-    public HoaDonDichVuDto thanhToanTienMat(HoaDonDichVuDto hoaDonDichVuDto, Long id) {
-        HoaDonDichVuDto data = findById(id);
-        BeanUtils.copyProperties(hoaDonDichVuDto, data);
-        data.setLoaiHinhThanhToan("Tien Mat");
-        return save(data);
-    }
+//    public HoaDonDichVuDto thanhToanTienMat(HoaDonDichVuDto hoaDonDichVuDto, Long id) {
+//        HoaDonDichVuDto data = findById(id);
+//        BeanUtils.copyProperties(hoaDonDichVuDto, data);
+//        data.setLoaiHinhThanhToan("Tien Mat");
+//        return save(data);
+//    }
 
     // ------------------------------------------------------------------------------------------------------------- //
 

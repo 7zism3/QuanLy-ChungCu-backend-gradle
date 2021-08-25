@@ -1,11 +1,14 @@
 package com.nhom43.quanlychungcubackendgradle.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +24,7 @@ public class ThongBao {
 
     private String noiDung;
 
-    private LocalDateTime thoiGian;
+    private LocalDateTime ngayTao;
 
 }
 

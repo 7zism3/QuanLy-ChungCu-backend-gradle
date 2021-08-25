@@ -1,7 +1,10 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.dto.NhanVienDto;
 import com.nhom43.quanlychungcubackendgradle.service.BoPhanService;
+import com.nhom43.quanlychungcubackendgradle.service.NhanVienService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @RequestMapping("/api/bo-phan")
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoPhanController {
 
     private final BoPhanService boPhanService;
+    private final NhanVienService nhanVienService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated BoPhanDto boPhanDto) {
@@ -47,6 +53,12 @@ public class BoPhanController {
     public ResponseEntity<Void> update(@RequestBody @Validated BoPhanDto boPhanDto, @PathVariable("id") Long id) {
         boPhanService.update(boPhanDto, id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/nhan-vien")
+    public ResponseEntity<List<NhanVienDto>> findAll(@PathVariable ("id") Long id) {
+        List<NhanVienDto> list = nhanVienService.findAllByBoPhan(id);
+        return ResponseEntity.ok(list);
     }
 
 }

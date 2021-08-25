@@ -1,7 +1,9 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.CuDanDto;
 import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
+import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
 import com.nhom43.quanlychungcubackendgradle.mapper.BoPhanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.BoPhanRepository;
 import lombok.AllArgsConstructor;
@@ -48,5 +50,15 @@ public class BoPhanService {
         BoPhanDto data = findById(id);
         BeanUtils.copyProperties(boPhanDto, data);
         return save(data);
+    }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    public List<BoPhanDto> findAll() {
+        List<BoPhan> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại bộ phận nào");
+        return boPhanMapper.toDto(list);
     }
 }

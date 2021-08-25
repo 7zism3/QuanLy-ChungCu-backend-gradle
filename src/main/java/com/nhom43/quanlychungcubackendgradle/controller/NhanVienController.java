@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
+import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.dto.NhanVienDto;
 import com.nhom43.quanlychungcubackendgradle.service.NhanVienService;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RequestMapping("/api/nhan-vien")
@@ -46,5 +49,15 @@ public class NhanVienController {
     public ResponseEntity<Void> update(@RequestBody @Validated NhanVienDto nhanVienDto, @PathVariable("id") Long id) {
         nhanVienService.update(nhanVienDto, id);
         return ResponseEntity.ok().build();
+    }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    @GetMapping("")
+    public ResponseEntity<List<NhanVienDto>> findAll() {
+        List<NhanVienDto> list = nhanVienService.findAll();
+        return ResponseEntity.ok(list);
     }
 }

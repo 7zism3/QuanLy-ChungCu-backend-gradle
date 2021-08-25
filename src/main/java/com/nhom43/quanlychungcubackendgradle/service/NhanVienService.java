@@ -32,7 +32,8 @@ public class NhanVienService {
     }
 
     public NhanVienDto findById(Long id) {
-        return nhanVienMapper.toDto(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Không tồn tại id: " + id)));
+        return nhanVienMapper.toDto(repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Không tồn tại id: " + id)));
     }
 
     public Page<NhanVienDto> findByCondition(NhanVienDto nhanVienDto, Pageable pageable) {
@@ -46,5 +47,20 @@ public class NhanVienService {
         NhanVienDto data = findById(id);
         BeanUtils.copyProperties(nhanVienDto, data);
         return save(data);
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    public List<NhanVienDto> findAll() {
+        List<NhanVien> list = repository.findAll();
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại nhân viên nào nào");
+        return nhanVienMapper.toDto(list);
+    }
+
+    public List<NhanVienDto> findAllByBoPhan(Long id) {
+        List<NhanVien> list = repository.findAllByBoPhan_Id(id);
+        if (list.isEmpty())
+            throw new ResourceNotFoundException("Chưa tồn tại nhân viên nào thuộc Bộ phận có id: " + id);
+        return nhanVienMapper.toDto(list);
     }
 }

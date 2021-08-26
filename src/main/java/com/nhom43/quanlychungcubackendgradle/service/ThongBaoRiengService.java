@@ -33,11 +33,14 @@ public class ThongBaoRiengService {
                 entity.setNgayTao(LocalDateTime.now());
         } else
             entity.setNgayTao(LocalDateTime.now());
-        String tmp = thongBaoRiengDto.getNoiDung();
+
+        String tmp = entity.getNoiDung();
         if (tmp.substring(0, 3).equals("<p>"))
-            thongBaoRiengDto.setNoiDung(tmp.substring(3));
-        if (tmp.substring(tmp.length() - 3, 3).equals("<p>"))
-            thongBaoRiengDto.setNoiDung(tmp.substring(0, tmp.length()));
+            entity.setNoiDung(tmp.substring(3));
+        tmp = entity.getNoiDung();
+        if (tmp.substring(tmp.length() - 6, 5).equals("</p>\n"))
+            entity.setNoiDung(tmp.substring(0, tmp.length() - 2));
+
         return thongBaoRiengMapper.toDto(repository.save(entity));
     }
 

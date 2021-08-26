@@ -28,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -138,12 +137,13 @@ public class AuthService {
     }
 
     public void forgotPassword(EmailRequest emailRequest) {
-        User user = userRepository.findByEmail(emailRequest.getEmail()).orElseThrow(() -> new SpringException("Không tìm thấy tài khoản nào có email là: " + emailRequest.getEmail()));
+        User user = userRepository.findByEmail(emailRequest.getEmail()).orElseThrow(() ->
+                new SpringException("Không tìm thấy tài khoản nào có email là: " + emailRequest.getEmail()));
         String token = generateVerificationTokenPassword(user);
         mailService.sendMail(new NotificationEmail("Xác nhận yêu cầu lấy lại mật khẩu",
-                user.getEmail(), "Vui lòng nhấp vào đường dẫn bên dưới để làm mới mật khẩu của bạn, " +
-                "Hạn sủ dụng 6 giờ: "
-                + appConfig.getAppUrl() + "/auth/passwordVerification/" + token));
+                user.getEmail(), "Vui lòng nhấp vào đường dẫn bên dưới để làm mới mật khẩu của bạn, "
+                + "Hạn sủ dụng 6 giờ: " + "\n"
+                + "http://localhost:4200/" + "passwordVerification/" + token));
     }
 
     private String generateVerificationTokenPassword(User user) {
@@ -183,10 +183,12 @@ public class AuthService {
 
 
     public void editPassword(AccoutEditRequest accoutEditRequest) {
-        User username = userRepository.findByUsername(accoutEditRequest.getUsername()).orElseThrow(() -> new SpringException("Không tìm thấy tên tài khoản là: " + accoutEditRequest.getUsername()));
+        User username = userRepository.findByUsername(accoutEditRequest.getUsername()).orElseThrow(() ->
+                new SpringException("Không tìm thấy tên tài khoản là: " + accoutEditRequest.getUsername()));
         username.setPassword(passwordEncoder.encode(accoutEditRequest.getPassword()));
         userRepository.save(username);
-        List<VerificationTokenPassword> listTokenByUser = verificationTokenPasswordRepository.findByUser_Id(username.getId());
+        List<VerificationTokenPassword> listTokenByUser =
+                verificationTokenPasswordRepository.findByUser_Id(username.getId());
         for (VerificationTokenPassword verificationTokenPassword : listTokenByUser) {
             verificationTokenPasswordRepository.deleteById(verificationTokenPassword.getId());
         }

@@ -2,16 +2,11 @@ package com.nhom43.quanlychungcubackendgradle.share.pay.service;
 
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
-import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
-import com.nhom43.quanlychungcubackendgradle.entity.HoaDonDichVu;
-import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
-import com.nhom43.quanlychungcubackendgradle.entity.User;
+import com.nhom43.quanlychungcubackendgradle.entity.*;
 import com.nhom43.quanlychungcubackendgradle.ex.SpringException;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonDichVuMapper;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
-import com.nhom43.quanlychungcubackendgradle.repository.HoaDonDichVuRepository;
-import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
-import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
+import com.nhom43.quanlychungcubackendgradle.repository.*;
 import com.nhom43.quanlychungcubackendgradle.share.model.NotificationEmail;
 import com.nhom43.quanlychungcubackendgradle.share.service.MailService;
 import lombok.AllArgsConstructor;
@@ -19,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -26,6 +22,8 @@ import java.time.LocalDateTime;
 public class PaypalService {
 
     private final HoaDonDichVuRepository hoaDonDichVuRepository;
+    private final ChiTietHoaDonDichVuRepository chiTietHoaDonDichVuRepository;
+    private final ChiTietHoaDonSuaChuaRepository chiTietHoaDonSuaChuaRepository;
     private final HoaDonSuaChuaRepository hoaDonSuaChuaRepository;
     private final HoaDonDichVuMapper hoaDonDichVuMapper;
     private final HoaDonSuaChuaMapper hoaDonSuaChuaMapper;
@@ -40,7 +38,14 @@ public class PaypalService {
         if (hoaDonDichVu.getTrangThai() == true) {
             throw new SpringException("Hóa đơn này của bạn đã được thanh toán");
         }
-        return hoaDonDichVuMapper.toDto(hoaDonDichVu);
+        List<ChiTietHoaDonDichVu> list = chiTietHoaDonDichVuRepository.findByHoaDonDichVu_Id(hoaDonDichVu.getId());
+        double tongTien = 0;
+        for (ChiTietHoaDonDichVu chiTietHoaDonDichVu : list) {
+            tongTien += chiTietHoaDonDichVu.getDonGia() * chiTietHoaDonDichVu.getSoLuong();
+        }
+        HoaDonDichVuDto kq = hoaDonDichVuMapper.toDto(hoaDonDichVu);
+        kq.setSoTien(tongTien);
+        return kq;
     }
 
     public HoaDonSuaChuaDto kiemTraTrangThaiThanhToan_HDSC(Long id) {
@@ -49,7 +54,14 @@ public class PaypalService {
         if (hoaDonSuaChua.getTrangThai() == true) {
             throw new SpringException("Hóa đơn này của bạn đã được thanh toán");
         }
-        return hoaDonSuaChuaMapper.toDto(hoaDonSuaChua);
+        List<ChiTietHoaDonSuaChua> list = chiTietHoaDonSuaChuaRepository.findByHoaDonSuaChua_Id(hoaDonSuaChua.getId());
+        double tongTien = 0;
+        for (ChiTietHoaDonSuaChua chiTietHoaDonSuaChua : list) {
+            tongTien += chiTietHoaDonSuaChua.getDonGia() * chiTietHoaDonSuaChua.getSoLuong();
+        }
+        HoaDonSuaChuaDto kq = hoaDonSuaChuaMapper.toDto(hoaDonSuaChua);
+        kq.setSoTien(tongTien);
+        return kq;
     }
 
     public void submitThanhToan_HDDV(Long id) {

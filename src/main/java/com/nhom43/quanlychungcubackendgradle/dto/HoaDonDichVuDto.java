@@ -4,7 +4,6 @@ import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,5 +19,7 @@ public class HoaDonDichVuDto extends AbstractDto<Long> {
     private String soDienThoai;
     private String loaiHinhThanhToan;
     private LocalDateTime ngayThanhToan;
+
+    private double soTien;
 
 }

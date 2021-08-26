@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 @AllArgsConstructor
 public class PaypalController {
 

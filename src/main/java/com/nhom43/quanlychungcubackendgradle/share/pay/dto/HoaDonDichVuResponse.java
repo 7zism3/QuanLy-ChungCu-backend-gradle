@@ -18,5 +18,6 @@ public class HoaDonDichVuResponse {
     private String soDienThoai;
     private String loaiHinhThanhToan;
     private LocalDateTime ngayThanhToan;
+
     private double soTien;
 }

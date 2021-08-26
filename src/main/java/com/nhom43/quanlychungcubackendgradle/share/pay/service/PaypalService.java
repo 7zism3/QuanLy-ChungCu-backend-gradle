@@ -21,6 +21,7 @@ import java.util.List;
 @Transactional
 public class PaypalService {
 
+    private final CuDanRepository cuDanRepository;
     private final HoaDonDichVuRepository hoaDonDichVuRepository;
     private final ChiTietHoaDonDichVuRepository chiTietHoaDonDichVuRepository;
     private final ChiTietHoaDonSuaChuaRepository chiTietHoaDonSuaChuaRepository;
@@ -68,9 +69,15 @@ public class PaypalService {
         HoaDonDichVu hoaDonDichVu = hoaDonDichVuRepository.findById(id).orElseThrow(() ->
                 new SpringException("Không tồn hóa đơn DVCD với mã ID:" + id));
         LocalDateTime time = LocalDateTime.now();
+        CanHo canHo = hoaDonDichVu.getCanHo();
+        CuDan cuDan = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
+
         hoaDonDichVu.setTrangThai(true);
         hoaDonDichVu.setNgayThanhToan(time);
-        CanHo canHo = hoaDonDichVu.getCanHo();
+        hoaDonDichVu.setLoaiHinhThanhToan("Paypal");
+        hoaDonDichVu.setTenNguoiThanhToan(cuDan.getHoTen());
+        hoaDonDichVu.setSoDienThoai(cuDan.getSoDienThoai());
+
         User user = userRepository.getById(canHo.getIdTaiKhoan());
         hoaDonDichVuRepository.save(hoaDonDichVu);
         mailService.sendMail(new NotificationEmail("Thanh toán thành công",
@@ -83,9 +90,15 @@ public class PaypalService {
         HoaDonSuaChua hoaDonSuaChua = hoaDonSuaChuaRepository.findById(id).orElseThrow(() ->
                 new SpringException("Không tồn tại hóa đơn DVSC với mã ID:" + id));
         LocalDateTime time = LocalDateTime.now();
+        CanHo canHo = hoaDonSuaChua.getCanHo();
+        CuDan cuDan = cuDanRepository.findByCanHoAndChuCanHo(canHo, true);
+
         hoaDonSuaChua.setTrangThai(true);
         hoaDonSuaChua.setNgayThanhToan(time);
-        CanHo canHo = hoaDonSuaChua.getCanHo();
+        hoaDonSuaChua.setLoaiHinhThanhToan("Paypal");
+        hoaDonSuaChua.setTenNguoiThanhToan(cuDan.getHoTen());
+        hoaDonSuaChua.setSoDienThoai(cuDan.getSoDienThoai());
+
         User user = userRepository.getById(canHo.getIdTaiKhoan());
         hoaDonSuaChuaRepository.save(hoaDonSuaChua);
         mailService.sendMail(new NotificationEmail("Thanh toán thành công",

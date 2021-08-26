@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class HoaDonSuaChuaResponse {    private Long id;
+public class HoaDonSuaChuaResponse {
+    private Long id;
     private LocalDateTime ngayTao;
     private Boolean trangThai;
     private CanHo canHo;
@@ -17,5 +18,6 @@ public class HoaDonSuaChuaResponse {    private Long id;
     private String soDienThoai;
     private String loaiHinhThanhToan;
     private LocalDateTime ngayThanhToan;
+
     private double soTien;
 }

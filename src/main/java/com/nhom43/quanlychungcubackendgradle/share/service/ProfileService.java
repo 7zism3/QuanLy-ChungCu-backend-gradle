@@ -33,8 +33,8 @@ public class ProfileService {
                 return "User";
             case "Admin":
                 return "Admin";
-            case "Staff":
-                return "Staff";
+            case "Staff-Bql":
+                return "Staff-Bql";
         }
         return "null";
     }

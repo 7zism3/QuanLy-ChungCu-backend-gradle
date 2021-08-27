@@ -21,7 +21,7 @@ public class ChiTietHoaDonSuaChua {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_loai_sua_chua", nullable = false)
-    private LoaiSuaChua LoaiSuaChua;
+    private LoaiSuaChua loaiSuaChua;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "id_hoa_don_sua_chua", nullable = false)

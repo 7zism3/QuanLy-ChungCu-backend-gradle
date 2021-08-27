@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTH_ADMIN_LIST).hasAnyAuthority("Admin")
                 // Yêu cầu xác thự quyền USER
                 .antMatchers(AUTH_USER_LIST).hasAnyAuthority("User")
-                .antMatchers(AUTH_LIST).hasAnyAuthority("User", "Admin")
+                .antMatchers(AUTH_LIST).hasAnyAuthority("User", "Admin"  , "Staff-Bql")
                 // Không xác thực yêu cầu cụ thể này
                 .antMatchers(NO_AUTH_LIST).permitAll().anyRequest().authenticated();
 

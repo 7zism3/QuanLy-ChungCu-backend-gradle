@@ -24,9 +24,9 @@ public class HoaDonSuaChuaController {
     private final ChiTietHoaDonSuaChuaService chiTietHoaDonSuaChuaService;
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody @Validated HoaDonSuaChuaDto hoaDonSuaChuaDto) {
-        hoaDonSuaChuaService.save(hoaDonSuaChuaDto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<HoaDonSuaChuaDto> save(@RequestBody @Validated HoaDonSuaChuaDto hoaDonSuaChuaDto) {
+        HoaDonSuaChuaDto hoaDonSuaChuaDto1 = hoaDonSuaChuaService.save(hoaDonSuaChuaDto);
+        return ResponseEntity.ok(hoaDonSuaChuaDto1);
     }
 
     @GetMapping("/{id}")

@@ -18,4 +18,8 @@ public class LoaiSuaChua {
 
     private Double donGia;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_bo_phan")
+    private BoPhan boPhan;
+
 }

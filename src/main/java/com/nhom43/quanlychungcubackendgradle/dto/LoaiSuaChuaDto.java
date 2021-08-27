@@ -1,5 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.dto;
 
+import com.nhom43.quanlychungcubackendgradle.entity.BoPhan;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,4 +12,5 @@ public class LoaiSuaChuaDto extends AbstractDto<Long> {
     private String ten;
     private Double donGia;
 
+    private BoPhan boPhan;
 }

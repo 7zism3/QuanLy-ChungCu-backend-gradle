@@ -48,9 +48,20 @@ public class LoaiSuaChuaService {
         return save(data);
     }
 
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
     public List<LoaiSuaChuaDto> findAll() {
         List<LoaiSuaChua> list = repository.findAll();
         if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tạo loại hình sửa chữa");
+        return loaiSuaChuaMapper.toDto(list);
+    }
+
+    public List<LoaiSuaChuaDto> findAllByBoPhan(Long id) {
+        List<LoaiSuaChua> list = repository.findAllByBoPhan_Id(id);
+        if (list.isEmpty())
+            throw new ResourceNotFoundException("Chưa tồn tại loại sửa chữa nào thuộc Bộ phận có id: " + id);
         return loaiSuaChuaMapper.toDto(list);
     }
 }

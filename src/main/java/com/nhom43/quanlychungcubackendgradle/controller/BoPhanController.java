@@ -1,8 +1,10 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.BoPhanDto;
+import com.nhom43.quanlychungcubackendgradle.dto.LoaiSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.dto.NhanVienDto;
 import com.nhom43.quanlychungcubackendgradle.service.BoPhanService;
+import com.nhom43.quanlychungcubackendgradle.service.LoaiSuaChuaService;
 import com.nhom43.quanlychungcubackendgradle.service.NhanVienService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,7 @@ public class BoPhanController {
 
     private final BoPhanService boPhanService;
     private final NhanVienService nhanVienService;
+    private final LoaiSuaChuaService loaiSuaChuaService;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Validated BoPhanDto boPhanDto) {
@@ -69,4 +72,9 @@ public class BoPhanController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/{id}/loai-sua-chua")
+    public ResponseEntity<List<LoaiSuaChuaDto>> findAllLoaiSuaChuaByBoPhan(@PathVariable ("id") Long id) {
+        List<LoaiSuaChuaDto> list = loaiSuaChuaService.findAllByBoPhan(id);
+        return ResponseEntity.ok(list);
+    }
 }

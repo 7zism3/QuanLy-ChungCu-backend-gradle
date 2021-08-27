@@ -1,7 +1,6 @@
 package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.UserDto;
-import com.nhom43.quanlychungcubackendgradle.service.CanHoService;
 import com.nhom43.quanlychungcubackendgradle.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RequestMapping("/api/user")
@@ -58,5 +59,13 @@ public class UserController {
 //        CanHoDto canHo = canHoService.getCanHoByUser_Username(username);
 //        return ResponseEntity.ok(canHo);
 //    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+    @GetMapping("/role={role}")
+    public ResponseEntity<List<UserDto>> findAllByRole(@PathVariable("role") String role) {
+        List<UserDto> list = userService.findAllByRole(role);
+        return ResponseEntity.ok(list);
+    }
 
 }

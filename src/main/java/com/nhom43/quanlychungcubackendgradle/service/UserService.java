@@ -47,4 +47,15 @@ public class UserService {
         BeanUtils.copyProperties(userDto, data);
         return save(data);
     }
+
+
+    // ------------------------------------------------------------------------------------------------------------- //
+
+
+    public List<UserDto> findAllByRole(String role) {
+        List<User> list = repository.findAllByRole(role);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại tài khoản nào");
+        return userMapper.toDto(list);
+    }
+
 }

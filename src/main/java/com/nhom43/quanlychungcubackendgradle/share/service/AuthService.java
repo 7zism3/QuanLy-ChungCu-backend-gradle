@@ -61,6 +61,7 @@ public class AuthService {
         user.setCreated(Instant.now());
         user.setEnabled(false);
         user.setStatus(true);
+        user.setImage(registerRequest.getImage());
         user.setRole(registerRequest.getRole());
         userRepository.save(user);
         String token = generateVerificationTokenAccount(user);

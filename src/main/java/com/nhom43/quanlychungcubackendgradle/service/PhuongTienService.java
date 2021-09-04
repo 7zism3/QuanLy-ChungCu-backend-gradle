@@ -77,7 +77,7 @@ public class PhuongTienService {
     }
 
     public List<PhuongTienDto> findAllByDaXoaAndCanHo_Id(boolean daXoa, Long id) {
-        List<PhuongTien> list = repository.findAllByDaXoa(daXoa);
+        List<PhuongTien> list = repository.findAllByDaXoaAndCanHo_Id(daXoa, id);
         if (list.isEmpty()) throw new ResourceNotFoundException("Tại Căn Hộ ID: " + id + ", Không có Phương tiện nào Trạng thái \"ĐÃ XÓA\" : " + daXoa);
         return phuongTienMapper.toDto(list);
     }

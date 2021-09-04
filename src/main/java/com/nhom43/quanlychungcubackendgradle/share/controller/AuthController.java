@@ -28,6 +28,13 @@ public class AuthController {
                 OK);
     }
 
+    @PostMapping("/register2")
+    public ResponseEntity<String> register2(@RequestBody RegisterRequest2 registerRequest) {
+        authService.register2(registerRequest);
+        return new ResponseEntity<>("Tạo tài khoản thành công! Vui lòng kích hoạt qua địa chỉ email đăng kí!",
+                OK);
+    }
+
     @PostMapping("/forgotPassword")
     public ResponseEntity<String> forgotPassword(@RequestBody EmailRequest emailRequest) {
         authService.forgotPassword(emailRequest);

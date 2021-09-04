@@ -1,10 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.share.service;
 
 
-import com.nhom43.quanlychungcubackendgradle.entity.RefreshToken;
-import com.nhom43.quanlychungcubackendgradle.entity.User;
-import com.nhom43.quanlychungcubackendgradle.entity.VerificationTokenAccount;
-import com.nhom43.quanlychungcubackendgradle.entity.VerificationTokenPassword;
+import com.nhom43.quanlychungcubackendgradle.entity.*;
 import com.nhom43.quanlychungcubackendgradle.ex.SpringException;
 import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
@@ -71,6 +68,34 @@ public class AuthService {
                 "Hạn sử dụng trong vòng 6 giờ : "
                 + appConfig.getAppUrl() + "/accountVerification/"
                 + token));
+    }
+
+    public void register2(RegisterRequest2 registerRequest) {
+        registerRequest.setUsername(registerRequest.getUsername().toLowerCase());
+        Optional<User> username = userRepository.findByUsername(registerRequest.getUsername());
+        Optional<User> email = userRepository.findByEmail(registerRequest.getEmail());
+        if (username.isPresent() || email.isPresent()) {
+            throw new SpringException("Tài khoản, email bị trùng");
+        }
+        User user = new User();
+        user.setUsername(registerRequest.getUsername());
+        user.setEmail(registerRequest.getEmail());
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        user.setCreated(Instant.now());
+        user.setEnabled(false);
+        user.setStatus(true);
+        user.setImage(registerRequest.getImage());
+        user.setRole(registerRequest.getRole());
+        User user1 = userRepository.save(user);
+        CanHo canHo = canHoRepository.getById(registerRequest.getIdCanHo());
+        canHo.setIdTaiKhoan(user1.getId());
+        String token = generateVerificationTokenAccount(user);
+        mailService.sendMail(new NotificationEmail("Vui lòng kích hoạt tài khoản mới của bạn",
+                user.getEmail(),
+                "Vui lòng nhấp vào đường dẫn này để kích hoạt tài khoản bạn mới đăng ký, " +
+                        "Hạn sử dụng trong vòng 6 giờ : "
+                        + appConfig.getAppUrl() + "/accountVerification/"
+                        + token));
     }
 
     private String generateVerificationTokenAccount(User user) {

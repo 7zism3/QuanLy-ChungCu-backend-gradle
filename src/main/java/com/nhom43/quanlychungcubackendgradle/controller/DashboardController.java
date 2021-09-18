@@ -30,9 +30,11 @@ public class DashboardController {
     }
 
     @GetMapping("/admin/gui-loi-chuc-mung-sinh-nhat/{id}")
-    public ResponseEntity<?> guiLoiChucMungSinhNhat(@PathVariable("id") int id) {
+    public ResponseEntity<?> guiLoiChucMungSinhNhat(@PathVariable("id") Long id) {
         String kq = "đã gửi lời chúc mừng sinh nhật";
-        return ResponseEntity.ok(kq);
+        dashboardService.guiLoiChucMungSinhNhat(id);
+        return ResponseEntity.ok().build();
+//        return ResponseEntity.ok(kq);
     }
 
     @GetMapping("/admin/thong-ke-hoa-don-dich-vu/nam={nam}&thang={thang}")

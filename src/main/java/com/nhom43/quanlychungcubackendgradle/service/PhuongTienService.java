@@ -4,6 +4,7 @@ import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
 import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.PhuongTienRepository;
+import com.nhom43.quanlychungcubackendgradle.repository.TheCuDanRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,7 @@ public class PhuongTienService {
 
     private final PhuongTienRepository repository;
     private final PhuongTienMapper phuongTienMapper;
+    private final TheCuDanRepository theCuDanRepository;
 
     public PhuongTienDto save(PhuongTienDto phuongTienDto) {
         PhuongTien entity = phuongTienMapper.toEntity(phuongTienDto);
@@ -29,6 +31,8 @@ public class PhuongTienService {
     }
 
     public void deleteById(Long id) {
+        repository.findById(id).get().getTheCuDan().setKichHoat(false);
+//        TheCuDan theCuDan = theCuDanRepository.findAllByMaThe
         repository.deleteById(id);
     }
 

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,6 +27,8 @@ public class TheCuDanService {
 
     public TheCuDanDto save(TheCuDanDto theCuDanDto) {
         TheCuDan entity = theCuDanMapper.toEntity(theCuDanDto);
+        entity.setDaXoa(false);
+        entity.setNgayTao(LocalDate.now());
         return theCuDanMapper.toDto(repository.save(entity));
     }
 

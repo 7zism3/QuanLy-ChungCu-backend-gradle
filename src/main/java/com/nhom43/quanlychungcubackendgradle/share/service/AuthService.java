@@ -169,7 +169,7 @@ public class AuthService {
         mailService.sendMail(new NotificationEmail("Xác nhận yêu cầu lấy lại mật khẩu",
                 user.getEmail(), "Vui lòng nhấp vào đường dẫn bên dưới để làm mới mật khẩu của bạn, "
                 + "Hạn sủ dụng 6 giờ: " + "\n"
-                + "http://localhost:4200/" + "passwordVerification/" + token));
+                + appConfig.getAppUrl() + "/passwordVerification/" + token));
     }
 
     private String generateVerificationTokenPassword(User user) {
@@ -218,6 +218,13 @@ public class AuthService {
         for (VerificationTokenPassword verificationTokenPassword : listTokenByUser) {
             verificationTokenPasswordRepository.deleteById(verificationTokenPassword.getId());
         }
+    }
+
+    public void editStatus (AccoutEditRequest accoutEditRequest) {
+        User username = userRepository.findByUsername(accoutEditRequest.getUsername()).orElseThrow(() ->
+                new SpringException("Không tìm thấy tên tài khoản là: " + accoutEditRequest.getUsername()));
+        username.setStatus(accoutEditRequest.getStatus());
+        userRepository.save(username);
     }
 
     public boolean isLoggedIn() {

@@ -13,4 +13,6 @@ public class AccoutEditRequest {
 
     private String password;
 
+    private Boolean status;
+
 }

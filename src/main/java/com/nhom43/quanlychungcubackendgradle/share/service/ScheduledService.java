@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -58,9 +57,9 @@ public class ScheduledService {
         }
     }
 
-    @Scheduled(cron = "0 00 8 L * ?") // 1 tháng 1 lần vào ngày cuối cuàng của tháng lúc 8h 00
+    @Scheduled(cron = "0 30 8 L * ?") // 1 tháng 1 lần vào ngày cuối cuàng của tháng lúc 8h 00
     // Test time hiện tại @Scheduled(cron = "0 m h * * ?")
-    @Scheduled(cron = "0 52 03 * * ?")
+//    @Scheduled(cron = "0 29 03 * * ?")
     public void TaoHoaDonHangThang() {
         try {
             LocalDateTime time = LocalDateTime.now();
@@ -132,10 +131,13 @@ public class ScheduledService {
     }
 
     private void guiMailThongBaoToi(LocalDateTime time, CanHo canHo, double tongTien, String email) {
-        mailService.sendMail(new NotificationEmail("Thông báo thu tiền tháng " + time.getMonth()
+        mailService.sendMail(new NotificationEmail("Thông báo thu tiền tháng " + time.getMonthValue()
                 + ", năm " + time.getYear(),
                 email,
-                "Chung cư ABC xin thông báo tới quý khách, hóa đơn cố định tháng này đã có" +
+                "Chung cư ABC xin thông báo tới quý khách, hóa đơn cố định tháng này đã có " +
+                        time.getMonthValue() + "/" + time.getYear()
+//                        "08/2021"
+                        +
                         "\nVui lòng đăng nhập để xem chi tiết thông tin hóa đơn!  : "
                         + "\nTổng tiền tháng này phải đóng của phòng " + canHo.getTenCanHo() + " là: "
                         + tongTien + "\nCảm ơn bạn đã đọc mail!"));

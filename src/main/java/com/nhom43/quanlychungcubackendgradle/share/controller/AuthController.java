@@ -60,6 +60,13 @@ public class AuthController {
         return new ResponseEntity<>("Đã sửa mật khẩu mới", OK);
     }
 
+    @PostMapping("/editStatus")
+    public ResponseEntity<String> editStatus(@RequestBody AccoutEditRequest accoutEditRequest) {
+        authService.editStatus(accoutEditRequest);
+        return ResponseEntity.ok().build();
+//        return new ResponseEntity<>("Đã thay đổi thành đã xoá", OK);
+    }
+
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);

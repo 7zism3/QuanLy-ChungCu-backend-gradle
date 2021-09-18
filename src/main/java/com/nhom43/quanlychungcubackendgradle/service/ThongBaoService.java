@@ -30,6 +30,14 @@ public class ThongBaoService {
                 entity.setNgayTao(LocalDateTime.now());
         } else
             entity.setNgayTao(LocalDateTime.now());
+
+        String tmp = entity.getNoiDung();
+        if (tmp.indexOf("<p>") >= 0)
+            entity.setNoiDung(tmp.substring(tmp.indexOf("<p>")+ 3));
+        tmp = entity.getNoiDung();
+        if (tmp.indexOf("</p>") >= 0)
+            entity.setNoiDung(tmp.substring(0, tmp.indexOf("</p>")));
+
         return thongBaoMapper.toDto(repository.save(entity));
     }
 

@@ -8,6 +8,9 @@ import com.nhom43.quanlychungcubackendgradle.mapper.CuDanMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.CuDanRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonDichVuRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
+import com.nhom43.quanlychungcubackendgradle.repository.UserRepository;
+import com.nhom43.quanlychungcubackendgradle.share.model.NotificationEmail;
+import com.nhom43.quanlychungcubackendgradle.share.service.MailService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -22,9 +25,11 @@ import java.util.List;
 public class DashboardService {
 
     private final CuDanRepository cuDanRepository;
+    private final UserRepository userRepository;
     private final HoaDonDichVuRepository hoaDonDichVuRepository;
     private final HoaDonSuaChuaRepository hoaDonSuaChuaRepository;
     private final CuDanMapper cuDanMapper;
+    private final MailService mailService;
 
     public DashboardResponse thongKe() {
         DashboardResponse dashboardResponse = new DashboardResponse();
@@ -54,6 +59,17 @@ public class DashboardService {
         if (cuDanList.isEmpty())
             throw new ResourceNotFoundException("Không có cư dân nào có sinh nhật trong tháng này");
         return cuDanMapper.toDto(cuDanList);
+    }
+
+    public void guiLoiChucMungSinhNhat(Long id) {
+        CuDan cuDan = cuDanRepository.getById(id);
+        String email = cuDan.getEmail();
+        if (email == null || email.equals("")) return;
+        mailService.sendMail(new NotificationEmail("Chúc mừng sinh nhật bạn",
+                cuDan.getEmail(),
+                " Được biết bạn có sinh nhật trong tháng này.\n" +
+                        "Ban quản lý chung cư gửi lời chúc mừng sinh nhật đến bạn.\n" +
+                        "Chúc bạn một sinh nhật vui vẻ bên gia đình, người thân!"));
     }
 
     public CountHoaDonResponse thongKeHoaDonDichVu(String nam, String thang) {

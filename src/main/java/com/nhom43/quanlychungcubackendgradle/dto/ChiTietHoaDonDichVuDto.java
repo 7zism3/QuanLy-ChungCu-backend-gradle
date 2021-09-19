@@ -12,6 +12,7 @@ public class ChiTietHoaDonDichVuDto extends AbstractDto<Long> {
     private Long id;
     private Double donGia;
     private Integer soLuong;
+    private String moTa;
     private DichVuCoDinh dichVuCoDinh;
     private HoaDonDichVu hoaDonDichVu;
 

@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.controller;
 
 import com.nhom43.quanlychungcubackendgradle.dto.ChiTietHoaDonSuaChuaDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.dto.request.HoaDonSuaChuaRequest;
 import com.nhom43.quanlychungcubackendgradle.service.ChiTietHoaDonSuaChuaService;
 import com.nhom43.quanlychungcubackendgradle.service.HoaDonSuaChuaService;
 import lombok.AllArgsConstructor;
@@ -48,8 +49,8 @@ public class HoaDonSuaChuaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody @Validated HoaDonSuaChuaDto hoaDonSuaChuaDto, @PathVariable("id") Long id) {
-        hoaDonSuaChuaService.update(hoaDonSuaChuaDto, id);
+    public ResponseEntity<Void> update(@RequestBody @Validated HoaDonSuaChuaRequest hoaDonSuaChuaRequest, @PathVariable("id") Long id) {
+        hoaDonSuaChuaService.update(hoaDonSuaChuaRequest, id);
         return ResponseEntity.ok().build();
     }
 

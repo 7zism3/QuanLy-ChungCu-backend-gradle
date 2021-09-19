@@ -1,6 +1,8 @@
 package com.nhom43.quanlychungcubackendgradle.service;
 
+import com.nhom43.quanlychungcubackendgradle.dto.HoaDonDichVuDto;
 import com.nhom43.quanlychungcubackendgradle.dto.HoaDonSuaChuaDto;
+import com.nhom43.quanlychungcubackendgradle.dto.request.HoaDonSuaChuaRequest;
 import com.nhom43.quanlychungcubackendgradle.entity.HoaDonSuaChua;
 import com.nhom43.quanlychungcubackendgradle.mapper.HoaDonSuaChuaMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.HoaDonSuaChuaRepository;
@@ -50,9 +52,11 @@ public class HoaDonSuaChuaService {
         return new PageImpl<>(hoaDonSuaChuaMapper.toDto(entities), pageable, entityPage.getTotalElements());
     }
 
-    public HoaDonSuaChuaDto update(HoaDonSuaChuaDto hoaDonSuaChuaDto, Long id) {
+    public HoaDonSuaChuaDto update(HoaDonSuaChuaRequest hoaDonSuaChuaRequest, Long id) {
         HoaDonSuaChuaDto data = findById(id);
-        BeanUtils.copyProperties(hoaDonSuaChuaDto, data);
+        BeanUtils.copyProperties(hoaDonSuaChuaRequest, data);
+        data.setNgayThanhToan(LocalDateTime.now());
+        data.setTrangThai(true);
         return save(data);
     }
 

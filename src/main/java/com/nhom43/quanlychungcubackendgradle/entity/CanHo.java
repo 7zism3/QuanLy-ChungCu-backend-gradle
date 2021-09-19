@@ -15,7 +15,7 @@ public class CanHo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String tenCanHo;
 
     @Column(nullable = false)

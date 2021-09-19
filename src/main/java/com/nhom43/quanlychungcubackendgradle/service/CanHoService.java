@@ -3,6 +3,7 @@ package com.nhom43.quanlychungcubackendgradle.service;
 import com.nhom43.quanlychungcubackendgradle.dto.CanHoDto;
 import com.nhom43.quanlychungcubackendgradle.entity.CanHo;
 import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
+import com.nhom43.quanlychungcubackendgradle.entity.User;
 import com.nhom43.quanlychungcubackendgradle.mapper.CanHoMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.CanHoRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.CuDanRepository;
@@ -95,8 +96,12 @@ public class CanHoService {
                 CanHoDto canHoDto = canHoMapper.toDto(canHo);
                 Long setSoLuongCuDan = cuDanRepository.countByCanHoAndDaXoa(canHo, false);
                 String emailTaiKhoan = null;
-                if (canHoDto.getIdTaiKhoan() != null)
+                if (canHoDto.getIdTaiKhoan() != null) {
                     emailTaiKhoan = userRepository.findById(canHoDto.getIdTaiKhoan()).get().getEmail();
+                    canHoDto.setTaiKhoan(userRepository.findById(canHoDto.getIdTaiKhoan()).get());
+                } else {
+                    canHoDto.setTaiKhoan(null);
+                }
                 canHoDto.setChuCanHo(chuCanHo);
                 canHoDto.setSoLuongCuDan(setSoLuongCuDan);
                 canHoDto.setEmailTaiKhoan(emailTaiKhoan);
@@ -109,5 +114,6 @@ public class CanHoService {
             return canHoMapper.toDto(canHoList);
         }
     }
+
 
 }

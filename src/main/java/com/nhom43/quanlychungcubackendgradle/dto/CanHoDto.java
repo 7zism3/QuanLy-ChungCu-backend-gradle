@@ -1,6 +1,7 @@
 package com.nhom43.quanlychungcubackendgradle.dto;
 
 import com.nhom43.quanlychungcubackendgradle.entity.CuDan;
+import com.nhom43.quanlychungcubackendgradle.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,5 +18,6 @@ public class CanHoDto extends AbstractDto<Long> {
     private String emailTaiKhoan;
     private Long soLuongCuDan;
     private CuDan chuCanHo;
+    private User taiKhoan;
 
 }

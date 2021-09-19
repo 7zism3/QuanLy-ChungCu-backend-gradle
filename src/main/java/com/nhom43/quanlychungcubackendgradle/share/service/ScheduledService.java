@@ -48,6 +48,8 @@ public class ScheduledService {
                 for (VerificationTokenAccount verificationTokenAccount : tokenAccountList) {
                     if (time.isAfter(verificationTokenAccount.getExpiryDate())) {
                         verificationTokenAccountRepository.deleteById(verificationTokenAccount.getId());
+                        CanHo canHo = canHoRepository.getCanHoByIdTaiKhoan(verificationTokenAccount.getUser().getId());
+                        canHo.setIdTaiKhoan(null);
                         userRepository.deleteById(verificationTokenAccount.getUser().getId());
                     }
                 }

@@ -17,6 +17,7 @@ public class ThongBaoRiengDto extends AbstractDto<Long> {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime ngayTao;
     private Boolean trangThai;
+    private Boolean cuDanGui;
     private CanHo canHo;
 
 }

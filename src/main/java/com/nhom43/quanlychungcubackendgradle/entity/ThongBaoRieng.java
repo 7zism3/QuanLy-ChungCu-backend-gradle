@@ -26,6 +26,8 @@ public class ThongBaoRieng {
 
     private Boolean trangThai;
 
+    private Boolean cuDanGui;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_can_ho")
     private CanHo canHo;

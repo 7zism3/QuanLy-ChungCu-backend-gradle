@@ -49,7 +49,8 @@ public class ThongBaoRiengService {
     }
 
     public ThongBaoRiengDto findById(Long id) {
-        return thongBaoRiengMapper.toDto(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return thongBaoRiengMapper.toDto(
+                repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     public Page<ThongBaoRiengDto> findByCondition(ThongBaoRiengDto thongBaoRiengDto, Pageable pageable) {
@@ -78,4 +79,11 @@ public class ThongBaoRiengService {
         if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thông báo riêng nào");
         return thongBaoRiengMapper.toDto(list);
     }
+    public List<ThongBaoRiengDto> findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(Long id) {
+        List<ThongBaoRieng> list = repository.findAllByCanHo_IdOrderByTrangThaiDescNgayTaoDesc(id);
+        if (list.isEmpty()) throw new ResourceNotFoundException("Chưa tồn tại thông báo riêng nào");
+        return thongBaoRiengMapper.toDto(list);
+    }
+
+
 }

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ThongBaoRepository extends JpaRepository<ThongBao, Long>, JpaSpecificationExecutor<ThongBao> {
+
 }

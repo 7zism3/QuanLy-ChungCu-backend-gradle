@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface TheCuDanRepository extends JpaRepository<TheCuDan, Long>, JpaSpecificationExecutor<TheCuDan> {
 
-    TheCuDan findAllByMaThe (String maThe);
+    TheCuDan findByMaThe (String maThe);
 
     List<TheCuDan> findAllByCanHo_Id(Long id);
 

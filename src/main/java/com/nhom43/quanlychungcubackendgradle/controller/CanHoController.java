@@ -123,4 +123,9 @@ public class CanHoController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/{id}/thong-bao-rieng2")
+    public ResponseEntity<?> findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(@PathVariable("id") Long id) {
+        List<ThongBaoRiengDto> list = thongBaoRiengService.findAllByCanHo_IdOrderByTrangThaiAscNgayTaoDesc(id);
+        return ResponseEntity.ok(list);
+    }
 }

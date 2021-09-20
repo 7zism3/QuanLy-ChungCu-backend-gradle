@@ -2,6 +2,7 @@ package com.nhom43.quanlychungcubackendgradle.service;
 
 import com.nhom43.quanlychungcubackendgradle.dto.PhuongTienDto;
 import com.nhom43.quanlychungcubackendgradle.entity.PhuongTien;
+import com.nhom43.quanlychungcubackendgradle.entity.TheCuDan;
 import com.nhom43.quanlychungcubackendgradle.mapper.PhuongTienMapper;
 import com.nhom43.quanlychungcubackendgradle.repository.PhuongTienRepository;
 import com.nhom43.quanlychungcubackendgradle.repository.TheCuDanRepository;
@@ -27,12 +28,17 @@ public class PhuongTienService {
 
     public PhuongTienDto save(PhuongTienDto phuongTienDto) {
         PhuongTien entity = phuongTienMapper.toEntity(phuongTienDto);
-        return phuongTienMapper.toDto(repository.save(entity));
+        PhuongTien phuongTien = repository.save(entity);
+        TheCuDan theCuDan = theCuDanRepository.findByMaThe(phuongTien.getTheCuDan().getMaThe());
+        theCuDan.setKichHoat(true);
+//        System.out.println(theCuDan.toString());
+        return phuongTienMapper.toDto(phuongTien);
     }
 
     public void deleteById(Long id) {
-        repository.findById(id).get().getTheCuDan().setKichHoat(false);
-//        TheCuDan theCuDan = theCuDanRepository.findAllByMaThe
+        PhuongTien phuongTien = repository.findById(id).get();
+        TheCuDan theCuDan = theCuDanRepository.findByMaThe(phuongTien.getTheCuDan().getMaThe());
+        theCuDan.setKichHoat(false);
         repository.deleteById(id);
     }
 
